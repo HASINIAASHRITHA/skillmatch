@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch - Bridge Your Degree to Career Goals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #3b82f6;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&h=1080&fit=crop&crop=center') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .marquee-container {
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .marquee {
+            font-size: 2.5rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary-blue);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 3rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--gray-50);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--gray-50);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .author-info p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: var(--gray-100);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-800);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-100);
+        }
+
+        /* Form Styles */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray-100);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Roadmap Styles */
+        .roadmap-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .roadmap-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .roadmap-section {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .roadmap-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+        }
+
+        .resource-item,
+        .week-item,
+        .project-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--gray-50);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .resource-item i,
+        .week-item i {
+            color: var(--primary-blue);
+            margin-right: 0.5rem;
+        }
+
+        /* About Page Styles */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .marquee {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Navigation for multi-page */
+        .page-nav {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-nav .nav-links {
+            justify-content: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .page {
+            min-height: 100vh;
+        }
+
+        .active-page {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">SkillMatch</a>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('form')">Find Path</a></li>
+                <li><a href="#" onclick="showPage('roadmap')">Roadmap</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="marquee-container">
+                    <div class="marquee">🎓 Bridge Your Degree to Dream Career 🚀</div>
+                </div>
+                <h1>Turn Your College Degree Into Career Success</h1>
+                <p>Get personalized roadmaps, curated resources, and practical projects to land your dream job - designed specifically for Tier 2/3 college students.</p>
+                <a href="#" class="cta-button" onclick="showPage('form')">Find Your Path <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="section how-it-works">
+            <div class="container">
+                <h2 class="section-title">How SkillMatch Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Choose Your Degree</h3>
+                        <p>Tell us about your current field of study - whether it's Engineering, Arts, Commerce, or any other discipline.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Select Career Goal</h3>
+                        <p>Share your dream job or career aspiration - from tech roles to creative fields to business positions.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <h3>Get Your Roadmap</h3>
+                        <p>Receive a personalized learning path with resources, timeline, and practical projects to achieve your goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why Choose SkillMatch?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI-Powered Roadmaps</h3>
+                        <p>Smart algorithms create personalized learning paths based on your degree, interests, and career goals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Peer Communities</h3>
+                        <p>Connect with like-minded students from similar backgrounds working towards the same career goals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-week"></i>
+                        </div>
+                        <h3>Weekly Learning Plans</h3>
+                        <p>Structured weekly schedules that fit around your college routine and other commitments.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3>Real-World Projects</h3>
+                        <p>Build impressive portfolio projects that showcase your skills to potential employers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="section-title">Success Stories</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            "SkillMatch helped me transition from Mechanical Engineering to UX Design. The roadmap was so clear and the projects really helped me build a strong portfolio!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PR</div>
+                            <div class="author-info">
+                                <h4>Priya Rajesh</h4>
+                                <p>UX Designer at Flipkart</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            "As a Commerce student wanting to get into Data Science, I was lost. SkillMatch's structured approach made the transition smooth and achievable."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AK</div>
+                            <div class="author-info">
+                                <h4>Amit Kumar</h4>
+                                <p>Data Analyst at Zomato</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            "The weekly plans fit perfectly with my college schedule. I landed my dream job in digital marketing within 6 months of following the roadmap!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SG</div>
+                            <div class="author-info">
+                                <h4>Sneha Gupta</h4>
+                                <p>Digital Marketing Manager at Swiggy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FORM PAGE -->
+    <div id="form-page" class="page hidden">
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <div class="marquee-container" style="margin-bottom: 3rem; background: var(--gradient); color: var(--white); padding: 15px; border-radius: 10px;">
+                    <div class="marquee">🎯 Discover Your Perfect Career Path Today! 🌟</div>
+                </div>
+                <h2 class="section-title">Find Your Personalized Roadmap</h2>
+                <div class="form-container">
+                    <form>
+                        <div class="form-group">
+                            <label for="degree">Your Current Degree/Field of Study</label>
+                            <select id="degree" name="degree">
+                                <option value="">Select your degree</option>
+                                <option value="btech-cse">B.Tech Computer Science</option>
+                                <option value="btech-ece">B.Tech Electronics</option>
+                                <option value="btech-mech">B.Tech Mechanical</option>
+                                <option value="btech-civil">B.Tech Civil</option>
+                                <option value="bba">Bachelor of Business Administration</option>
+                                <option value="bcom">Bachelor of Commerce</option>
+                                <option value="ba">Bachelor of Arts</option>
+                                <option value="bsc">Bachelor of Science</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="career-goal">Your Dream Career Goal</label>
+                            <input type="text" id="career-goal" name="career-goal" placeholder="e.g., UX Designer, Data Scientist, Digital Marketer, Software Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Current Experience Level</label>
+                            <select id="experience" name="experience">
+                                <option value="">Select experience level</option>
+                                <option value="beginner">Complete Beginner</option>
+                                <option value="some-knowledge">Some Basic Knowledge</option>
+                                <option value="intermediate">Intermediate Level</option>
+                            </select>
+                        </div>
+                        <button type="button" class="submit-btn" onclick="showPage('roadmap')">Get My Personalized Roadmap <i class="fas fa-magic"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ROADMAP PAGE -->
+    <div id="roadmap-page" class="page hidden">
+        <div class="roadmap-header" style="margin-top: 70px;">
+            <div class="container">
+                <div class="marquee-container" style="margin-bottom: 2rem; background: rgba(255, 255, 255, 0.2); padding: 10px; border-radius: 10px;">
+                    <div class="marquee">🗺️ Your Personalized Journey: BTech CSE → UX Designer 🎨</div>
+                </div>
+                <h1>Your Personalized Roadmap</h1>
+                <p>B.Tech Computer Science Engineering → UX Designer</p>
+            </div>
+        </div>
+        
+        <section class="section">
+            <div class="container">
+                <div class="roadmap-content">
+                    <!-- Resources Section -->
+                    <div class="roadmap-section">
+                        <h3><i class="fas fa-book-open"></i> Learning Resources</h3>
+                        
+                        <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Free Resources</h4>
+                        <div class="resource-item">
+                            <i class="fab fa-youtube"></i>
+                            <strong>YouTube:</strong> AJ&Smart Design Thinking, CharliMarieTV
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-globe"></i>
+                            <strong>Websites:</strong> Nielsen Norman Group, UX Planet (Medium)
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-tools"></i>
+                            <strong>Tools:</strong> Figma (Free), Adobe XD (Free plan)
+                        </div>
+
+                        <h4 style="margin: 1.5rem 0 1rem 0; color: var(--primary-blue);">Paid Resources</h4>
+                        <div class="resource-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <strong>Coursera:</strong> Google UX Design Certificate
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-laptop"></i>
+                            <strong>Udemy:</strong> Complete Web & Mobile Designer course
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-book"></i>
+                            <strong>Books:</strong> "Don't Make Me Think" by Steve Krug
+                        </div>
+                    </div>
+
+                    <!-- Weekly Plan Section -->
+                    <div class="roadmap-section">
+                        <h3><i class="fas fa-calendar-alt"></i> 6-Week Learning Plan</h3>
+                        
+                        <div class="week-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Week 1-2:</strong> UX Fundamentals & Design Thinking
+                            <br><small>Learn user-centered design principles, empathy mapping</small>
+                        </div>
+                        <div class="week-item">
+                            <i class="fas fa-search"></i>
+                            <strong>Week 3:</strong> User Research Methods
+                            <br><small>Surveys, interviews, personas, user journey mapping</small>
+                        </div>
+                        <div class="week-item">
+                            <i class="fas fa-pencil-ruler"></i>
+                            <strong>Week 4:</strong> Wireframing & Prototyping
+                            <br><small>Learn Figma/Adobe XD, create low-fi wireframes</small>
+                        </div>
+                        <div class="week-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <strong>Week 5:</strong> Visual Design & UI Principles
+                            <br><small>Color theory, typography, design systems</small>
+                        </div>
+                        <div class="week-item">
+                            <i class="fas fa-flask"></i>
+                            <strong>Week 6:</strong> Usability Testing & Portfolio
+                            <br><small>Test your designs, build portfolio website</small>
+                        </div>
+                    </div>
+
+                    <!-- Projects Section -->
+                    <div class="roadmap-section">
+                        <h3><i class="fas fa-project-diagram"></i> Portfolio Projects</h3>
+                        
+                        <div class="project-item">
+                            <strong>Project 1:</strong> Redesign a College Website
+                            <br><small>Improve navigation, accessibility, and student experience</small>
+                        </div>
+                        <div class="project-item">
+                            <strong>Project 2:</strong> Mobile App for Local Business
+                            <br><small>Food delivery or service booking app with complete UX flow</small>
+                        </div>
+                        <div class="project-item">
+                            <strong>Project 3:</strong> E-commerce Checkout Optimization
+                            <br><small>Reduce cart abandonment through better UX design</small>
+                        </div>
+                        <div class="project-item">
+                            <strong>Portfolio Website:</strong> Showcase Your Work
+                            <br><small>Create a professional portfolio highlighting your design process</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="cta-button" onclick="showPage('form')" style="background: var(--gradient); color: var(--white);">
+                        Create My Own Roadmap <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about-page" class="page hidden">
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <div class="marquee-container" style="margin-bottom: 3rem; background: var(--gradient); color: var(--white); padding: 15px; border-radius: 10px;">
+                    <div class="marquee">🚀 Empowering Students from Tier 2/3 Colleges to Achieve Their Dreams ✨</div>
+                </div>
+                <h2 class="section-title">About SkillMatch</h2>
+                
+                <div style="max-width: 800px; margin: 0 auto 4rem; text-align: center;">
+                    <p style="font-size: 1.2rem; color: var(--gray-600); line-height: 1.8;">
+                        SkillMatch bridges the gap between traditional college education and modern career requirements, 
+                        specifically designed for students from Tier 2 and Tier 3 colleges who have big dreams but need 
+                        the right guidance to achieve them.
+                    </p>
+                </div>
+
+                <!-- Vision & Mission -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-bottom: 5rem;">
+                    <div class="feature-card" style="text-align: center;">
+                        <div class="feature-icon" style="margin: 0 auto 1.5rem;">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To democratize career opportunities by making quality career guidance and skill development accessible to every student, regardless of their college tier or background.</p>
+                    </div>
+                    <div class="feature-card" style="text-align: center;">
+                        <div class="feature-icon" style="margin: 0 auto 1.5rem;">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>Empower students with personalized roadmaps, practical skills, and real-world projects that make them job-ready and confident in their career journey.</p>
+                    </div>
+                </div>
+
+                <!-- Target Users -->
+                <div style="background: var(--gray-50); padding: 3rem; border-radius: 20px; margin-bottom: 5rem;">
+                    <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem;">Who We Serve</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div style="text-align: center; padding: 1.5rem;">
+                            <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 2rem; margin: 0 auto 1rem;">
+                                🎓
+                            </div>
+                            <h4>Engineering Students</h4>
+                            <p>From all branches looking to transition into tech, design, or other fields</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem;">
+                            <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 2rem; margin: 0 auto 1rem;">
+                                💼
+                            </div>
+                            <h4>Commerce Students</h4>
+                            <p>Exploring careers in finance, marketing, analytics, and business</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem;">
+                            <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 2rem; margin: 0 auto 1rem;">
+                                🎨
+                            </div>
+                            <h4>Arts Students</h4>
+                            <p>Discovering opportunities in creative industries and emerging fields</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Section -->
+                <h3 style="text-align: center; margin-bottom: 3rem; font-size: 1.8rem;">Meet Our Team</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">AR</div>
+                        <h4>Arjun Reddy</h4>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">Co-Founder & CEO</p>
+                        <p style="color: var(--gray-600); font-size: 0.9rem;">Former Product Manager at Razorpay. NIT graduate passionate about bridging the education-industry gap.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">PS</div>
+                        <h4>Priya Sharma</h4>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">Co-Founder & CTO</p>
+                        <p style="color: var(--gray-600); font-size: 0.9rem;">Ex-Software Engineer at Flipkart. Specializes in AI/ML and career guidance algorithms.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">RK</div>
+                        <h4>Rahul Kumar</h4>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">Head of Content</p>
+                        <p style="color: var(--gray-600); font-size: 0.9rem;">Career counselor with 8+ years experience. Expert in curriculum design and skill assessment.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">SJ</div>
+                        <h4>Sneha Jain</h4>
+                        <p style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">UX Designer</p>
+                        <p style="color: var(--gray-600); font-size: 0.9rem;">Designer passionate about creating inclusive and accessible learning experiences for all students.</p>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div style="background: var(--gradient); color: var(--white); padding: 3rem; border-radius: 20px; margin-top: 5rem;">
+                    <h3 style="text-align: center; margin-bottom: 3rem; font-size: 1.8rem;">Our Impact</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">5000+</div>
+                            <p style="opacity: 0.9;">Students Helped</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">200+</div>
+                            <p style="opacity: 0.9;">Colleges Reached</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">85%</div>
+                            <p style="opacity: 0.9;">Success Rate</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem;">50+</div>
+                            <p style="opacity: 0.9;">Career Paths</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SkillMatch</h3>
+                    <p style="color: var(--gray-100); margin-bottom: 2rem;">Bridging the gap between your degree and dream career through personalized learning roadmaps.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="showPage('home')">Home</a>
+                    <a href="#" onclick="showPage('form')">Find Your Path</a>
+                    <a href="#" onclick="showPage('roadmap')">Sample Roadmap</a>
+                    <a href="#" onclick="showPage('about')">About Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="#">Career Guides</a>
+                    <a href="#">Skill Assessments</a>
+                    <a href="#">Success Stories</a>
+                    <a href="#">Blog</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a href="mailto:hello@skillmatch.in">hello@skillmatch.in</a>
+                    <a href="tel:+919876543210">+91 98765 43210</a>
+                    <a href="#">Bangalore, Karnataka</a>
+                    <a href="#">Support Center</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SkillMatch. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple page navigation
+        function showPage(pageName) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+                page.classList.add('hidden');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageName + '-page');
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('active-page');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Prevent default link behavior
+            return false;
+        }
+
+        // Smooth scrolling for internal links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some interactive hover effects
+            const cards = document.querySelectorAll('.step, .feature-card, .testimonial, .team-member');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // Add navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'var(--white)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
