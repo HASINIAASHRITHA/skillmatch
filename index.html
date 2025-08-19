@@ -2438,8 +2438,40 @@
         </section>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
     <!-- Add this script before </body> -->
     <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAb-vrPSA1uAGOh5cRYATexrSLOcExM1cQ",
+      authDomain: "skillmatch-26a70.firebaseapp.com",
+      projectId: "skillmatch-26a70",
+      storageBucket: "skillmatch-26a70.firebasestorage.app",
+      messagingSenderId: "443188525766",
+      appId: "1:443188525766:web:1ec03196411e81f5b0b5c7",
+      measurementId: "G-JZC2PJSSH5"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Function to hash password (using SHA-256)
+    // Note: This is still not as secure as Firebase Auth's built-in methods
+    // but is better than storing plaintext passwords
+    async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
     // Hamburger menu toggle
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     const navMenu = document.getElementById('navMenu');
@@ -2523,7 +2555,7 @@
         errorDiv.style.display = 'none';
         successDiv.style.display = 'none';
         loginBtn.disabled = true;
-        loginBtn.textContent = 'Logging in...';
+        loginBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">⏳</span> Logging in...';
 
         // Trim and lowercase email for robust comparison
         const email = emailInput.value.trim().toLowerCase();
@@ -2534,17 +2566,22 @@
             errorDiv.textContent = 'Please enter both email and password.';
             errorDiv.style.display = 'block';
             loginBtn.disabled = false;
-            loginBtn.textContent = 'Login';
+            loginBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">🔑</span> Login';
             return;
         }
-        // Simulate async login (replace with real API call)
-        setTimeout(function() {
-            // Accept only demo credentials
-            if (email === 'user@example.com' && password === 'password123') {
+
+        // Firebase Authentication
+        auth.signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Login successful
                 successDiv.textContent = 'Login successful! Redirecting...';
                 successDiv.style.display = 'block';
                 errorDiv.style.display = 'none';
+                
+                // Update UI
                 updateNavAuth(true, email);
+                
+                // Redirect to home page after a short delay
                 setTimeout(function() {
                     document.querySelectorAll('.page').forEach(function(page) {
                         page.classList.remove('active');
@@ -2555,14 +2592,18 @@
                     });
                     document.querySelector('.nav-menu a[data-page="home"]').classList.add('active');
                 }, 1200);
-            } else {
-                errorDiv.textContent = 'Invalid email or password. Please try again.';
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error("Login error:", error);
+                errorDiv.textContent = error.message || 'Invalid email or password. Please try again.';
                 errorDiv.style.display = 'block';
                 successDiv.style.display = 'none';
-            }
-            loginBtn.disabled = false;
-            loginBtn.textContent = 'Login';
-        }, 900);
+            })
+            .finally(() => {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">🔑</span> Login';
+            });
     });
 
     // Navigation for register/login links
@@ -2588,7 +2629,7 @@
     });
 
     // Register form logic
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const email = document.getElementById('regEmail').value.trim().toLowerCase();
         const password = document.getElementById('regPassword').value;
@@ -2599,46 +2640,101 @@
         errorDiv.style.display = 'none';
         successDiv.style.display = 'none';
         registerBtn.disabled = true;
-        registerBtn.textContent = 'Registering...';
+        registerBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">⏳</span> Registering...';
 
         // Basic validation
         if (!email || !password || !phone) {
             errorDiv.textContent = 'Please fill all fields.';
             errorDiv.style.display = 'block';
             registerBtn.disabled = false;
-            registerBtn.textContent = 'Register';
+            registerBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">📝</span> Register';
             return;
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             errorDiv.textContent = 'Please enter a valid email address.';
             errorDiv.style.display = 'block';
             registerBtn.disabled = false;
-            registerBtn.textContent = 'Register';
+            registerBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">📝</span> Register';
             return;
         }
         if (password.length < 6) {
             errorDiv.textContent = 'Password must be at least 6 characters.';
             errorDiv.style.display = 'block';
             registerBtn.disabled = false;
-            registerBtn.textContent = 'Register';
+            registerBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">📝</span> Register';
             return;
         }
         if (!/^[0-9]{10,15}$/.test(phone)) {
             errorDiv.textContent = 'Please enter a valid phone number.';
             errorDiv.style.display = 'block';
             registerBtn.disabled = false;
-            registerBtn.textContent = 'Register';
+            registerBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">📝</span> Register';
             return;
         }
-        // Simulate registration (replace with real API call)
-        setTimeout(function() {
+
+        try {
+            // Hash password for storage in Firestore
+            const passwordHash = await hashPassword(password);
+            
+            // Firebase Authentication - Create user
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+            
+            // Save additional user data in Firestore
+            await db.collection('users').doc(user.uid).set({
+                email: email,
+                phoneNumber: phone,
+                passwordHash: passwordHash, // Store hash, never the actual password
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            
+            // Registration successful
             successDiv.textContent = 'Registration successful! You can now login.';
             successDiv.style.display = 'block';
             errorDiv.style.display = 'none';
+            
+            // Reset form
+            document.getElementById('registerForm').reset();
+        } catch (error) {
+            // Handle errors
+            console.error("Registration error:", error);
+            errorDiv.textContent = error.message || 'Registration failed. Please try again.';
+            errorDiv.style.display = 'block';
+            successDiv.style.display = 'none';
+        } finally {
             registerBtn.disabled = false;
-            registerBtn.textContent = 'Register';
-        }, 1000);
+            registerBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">📝</span> Register';
+        }
     });
+
+    // Check authentication state on page load
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in
+            updateNavAuth(true, user.email);
+        } else {
+            // User is signed out
+            updateNavAuth(false);
+        }
+    });
+
+    // Sign out functionality
+    function signOut() {
+        auth.signOut().then(() => {
+            // Sign-out successful
+            updateNavAuth(false);
+            document.querySelectorAll('.page').forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.getElementById('home').classList.add('active');
+            document.querySelectorAll('.nav-menu a').forEach(function(a) {
+                a.classList.remove('active');
+            });
+            document.querySelector('.nav-menu a[data-page="home"]').classList.add('active');
+        }).catch((error) => {
+            console.error("Sign out error:", error);
+        });
+    }
     </script>
 </body>
 </html>
