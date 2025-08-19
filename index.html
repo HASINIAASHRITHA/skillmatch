@@ -712,14 +712,14 @@
         .about-section {
             padding: 120px 0 80px;
         }
-        
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
-        
+
         .team-member {
             text-align: center;
             padding: 30px;
@@ -728,12 +728,12 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .team-member:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
-        
+
         .member-avatar {
             width: 120px;
             height: 120px;
@@ -748,27 +748,27 @@
             font-weight: 600;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
-        
+
         .team-member h3 {
             font-size: 1.5rem;
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--text-dark);
         }
-        
+
         .team-member i {
             display: block;
             color: var(--primary-color);
             margin-bottom: 12px;
             font-size: 1rem;
         }
-        
+
         .team-member p {
             color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.5;
         }
-        
+
         /* Enhanced Footer Styles */
         .footer {
             background: var(--text-dark);
@@ -1137,11 +1137,935 @@
     border-bottom: 1px solid var(--border);
 }
 
-.resource-item:last-child, .project-item:last-child {
-    border-bottom: none;
+/* Auth Section Styles */
+.auth-section {
+    padding: 120px 0 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e6e9f0 100%);
 }
 
-/* ...existing code... */
+.auth-container {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+    position: relative;
+    overflow: hidden;
+}
+        
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.auth-heading {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.auth-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+}
+
+.auth-subtext {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.auth-form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.auth-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.auth-form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 16px !important;
+    font-size: 1.05rem !important;
+    margin-top: 10px;
+}
+
+.auth-switch {
+    margin-top: 25px;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.auth-switch a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+.auth-error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.auth-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+/* User profile indicator */
+.user-profile {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    min-width: 180px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-menu.active {
+    display: block;
+}
+
+.user-menu-item {
+    padding: 10px 20px;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.user-menu-item:hover {
+    background: var(--surface);
+    color: var(--primary-color);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 150px 0 100px; /* Increased padding */
+    text-align: left; /* Changed to left align for the new layout */
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 30px; /* Increased margin */
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 40px; /* Increased margin */
+    opacity: 0.9;
+}
+
+.hero-features {
+    margin: 30px 0 40px;
+    list-style: none;
+    padding: 0;
+}
+
+.hero-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.hero-features li span {
+    font-size: 1.5rem;
+}
+
+.hero-illustration {
+    max-width: 450px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hero-illustration img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+/* How It Works */
+.how-it-works {
+    padding: 80px 0;
+    background: var(--surface);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--text-dark);
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.step {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+/* Features */
+.features {
+    padding: 80px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 80px 0;
+    background: var(--surface);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.testimonial {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+}
+
+/* Enhanced Form Styles */
+.form-section {
+    padding: 120px 0 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e6e9f0 100%);
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+    animation: fadeIn 0.8s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+        
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Heading Styles */
+.form-heading {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+        
+.form-subtext {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+        
+.form-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+}
+        
+/* Enhanced Dropdown Styles */
+.form-group {
+    margin-bottom: 35px;
+    position: relative;
+}
+        
+.form-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+}
+        
+.form-group label i {
+    margin-right: 8px;
+    font-size: 1.3rem;
+}
+        
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 18px 20px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+    background-color: #fcfcfc;
+    font-family: 'Poppins', sans-serif;
+    appearance: none; /* Remove default arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+    padding-right: 45px;
+}
+        
+.form-group select option {
+    padding: 15px;
+    font-size: 17px;
+}
+        
+.form-group select:hover,
+.form-group input:hover {
+    border-color: #bdc3cf;
+}
+        
+.form-group select:focus,
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background-color: white;
+}
+        
+/* Option with icon styling */
+.option-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+        
+.option-icon {
+    font-size: 18px;
+    margin-right: 8px;
+}
+        
+/* Form submit button enhancement */
+.form-submit {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4f46e5 0%, #7e22ce 100%) !important;
+    border: none !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2) !important;
+    transform: translateY(0);
+    margin-top: 15px;
+}
+        
+.form-submit:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4) !important;
+}
+        
+.form-submit:active {
+    transform: translateY(-1px) scale(0.99) !important;
+}
+        
+.form-submit::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+        
+.form-submit:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+        
+/* Step Indicator */
+.form-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto 35px;
+}
+        
+.form-steps::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background: var(--border);
+    width: calc(100% - 70px);
+    top: 15px;
+    left: 35px;
+    z-index: 0;
+}
+        
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+        
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+}
+        
+.step-title {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-align: center;
+}
+        
+.step-item.active .step-number {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+        
+.step-item.active .step-title {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+        
+/* Success Animation */
+@keyframes success-checkmark {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+        
+.success-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+        
+.success-animation.show {
+    opacity: 1;
+    pointer-events: all;
+}
+        
+.checkmark-container {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4f46e5 0%, #7e22ce 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+}
+        
+.checkmark {
+    color: white;
+    font-size: 50px;
+    transform: scale(0);
+    opacity: 0;
+}
+        
+.success-animation.show .checkmark {
+    animation: success-checkmark 0.6s ease-out forwards;
+}
+        
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 30px !important;
+    }
+    
+    .form-heading {
+        font-size: 2.2rem;
+    }
+    
+    .form-submit {
+        padding: 18px !important;
+    }
+    
+    .form-steps {
+        max-width: 100%;
+    }
+    
+    .step-title {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 20px 15px !important;
+    }
+    
+    .form-heading {
+        font-size: 1.8rem;
+    }
+    
+    .form-subtext {
+        font-size: 0.9rem;
+    }
+    
+    .form-submit {
+        padding: 16px !important;
+        font-size: 16px;
+    }
+    
+    .form-group label {
+        font-size: 1rem;
+    }
+    
+    .form-group select,
+    .form-group input {
+        padding: 15px;
+        font-size: 15px;
+    }
+    
+    .form-steps::before {
+        width: calc(100% - 50px);
+        left: 25px;
+    }
+}
+
+/* Enhanced Team Section Styles */
+.about-section {
+    padding: 120px 0 80px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.team-member {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+.member-avatar {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.team-member h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.team-member i {
+    display: block;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.team-member p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Enhanced Footer Styles */
+.footer {
+    background: var(--text-dark);
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+    padding-left: 18px;
+}
+
+.footer-section ul li a:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+    padding-left: 22px;
+}
+
+.footer-section ul li a:hover:before {
+    opacity: 1;
+    transform: translateX(2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #374151;
+    color: #9ca3af;
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .member-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 1.8rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Remove duplicate <style> and <script> tags */
     </style>
 </head>
 <body>
@@ -1152,16 +2076,26 @@
                 <img src="https://www.logoai.com/uploads/output/2018/08/24/b6f97e6f0fd175613910d613d574d0cb.jpg?t=1562218596" alt="SkillMatch Logo" class="logo-image">
                 SkillMatch
             </div>
-            <div class="hamburger-menu">
+            <div class="hamburger-menu" id="hamburgerMenu">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#" data-page="home" class="active">Home</a></li>
                 <li><a href="#" data-page="form">Find Path</a></li>
                 <li><a href="#" data-page="roadmap">Roadmap</a></li>
                 <li><a href="#" data-page="about">About</a></li>
+                <li class="auth-nav-item"><a href="#" data-page="login">Login</a></li>
+                <li class="user-profile" id="userProfileNav">
+                    <div class="user-avatar">U</div>
+                    <div class="user-menu" id="userMenu">
+                        <div class="user-menu-item user-email">user@example.com</div>
+                        <div class="user-menu-divider"></div>
+                        <div class="user-menu-item" onclick="showPage('profile')">My Profile</div>
+                        <div class="user-menu-item" onclick="signOut()">Sign Out</div>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -1420,1170 +2354,291 @@
                             <li style="padding: 10px 0;">📱 <strong>Mobile App Design Course</strong> - Udemy ($49.99)</li>
                         </ul>
                     </div>
-
                     <div class="roadmap-section">
-                        <h3><span class="icon">📅</span> 6-Week Learning Plan</h3>
-                        <div class="week-plan">
-                            <div class="week">
-                                <div class="week-progress">
-                                    <div class="progress-circle">1</div>
-                                    <div class="progress-line"></div>
-                                </div>
-                                <div class="week-content">
-                                    <h4>Week 1: UX Fundamentals</h4>
-                                    <p>Introduction to UX design principles, user research basics, and design thinking methodology.</p>
-                                </div>
-                            </div>
-                            <div class="week">
-                                <div class="week-progress">
-                                    <div class="progress-circle">2</div>
-                                    <div class="progress-line"></div>
-                                </div>
-                                <div class="week-content">
-                                    <h4>Week 2: Research & Analysis</h4>
-                                    <p>User interviews, persona creation, competitive analysis, and problem identification.</p>
-                                </div>
-                            </div>
-                            <div class="week">
-                                <div class="week-progress">
-                                    <div class="progress-circle">3</div>
-                                    <div class="progress-line"></div>
-                                </div>
-                                <div class="week-content">
-                                    <h4>Week 3: Information Architecture</h4>
-                                    <p>Site mapping, user flows, wireframing, and content strategy fundamentals.</p>
-                                </div>
-                            </div>
-                            <div class="week">
-                                <div class="week-progress">
-                                    <div class="progress-circle">4</div>
-                                    <div class="progress-line"></div>
-                                </div>
-                                <div class="week-content">
-                                    <h4>Week 4: Visual Design</h4>
-                                    <p>Color theory, typography, layout principles, and creating style guides.</p>
-                                </div>
-                            </div>
-                            <div class="week">
-                                <div class="week-progress">
-                                    <div class="progress-circle">5</div>
-                                    <div class="progress-line"></div>
-                                </div>
-                                <div class="week-content">
-                                    <h4>Week 5: Prototyping</h4>
-                                    <p>Interactive prototypes, usability testing, and iteration based on feedback.</p>
-                                </div>
-                            </div>
-                            <div class="week last-week">
-                                <div class="week-progress">
-                                    <div class="progress-circle">6</div>
-                                    <div class="progress-line"></div>
-                                </div>
-                                <div class="week-content">
-                                    <h4>Week 6: Portfolio Development</h4>
-                                    <p>Case study creation, portfolio website setup, and job application preparation.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h3><span class="icon">🛠️</span> Projects to Build</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">📱 <strong>Portfolio Website</strong> - Showcase your projects and skills.</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">🎨 <strong>Redesign a Popular App</strong> - Choose an app and improve its UI/UX.</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">📊 <strong>Data Visualization Project</strong> - Use public datasets to create insightful visualizations.</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">🤖 <strong>Build a Chatbot</strong> - Create a simple chatbot using free tools.</li>
+                        </ul>
+                    </div>
+                    <div class="roadmap-section">
+                        <h3><span class="icon">🚀</span> Next Steps</h3>
+                        <ol style="padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">Complete the <strong>Google UX Design Certificate</strong>.</li>
+                            <li style="margin-bottom: 10px;">Join the <strong>UX Mastery Community</strong> and engage in discussions.</li>
+                            <li style="margin-bottom: 10px;">Start a personal project: <strong>Redesign a Popular App</strong>.</li>
+                            <li>Apply for internships or entry-level positions in UX design.</li>
+                        </ol>
                     </div>
                 </div>
+            </div>
+        </section>
+    </div>
 
-                <div class="roadmap-section" style="margin-top: 30px;">
-                    <h3><span class="icon">💼</span> Project Ideas to Build Your Portfolio</h3>
-                    <ul style="padding-left: 20px;">
-                        <li><strong>E-commerce Mobile App Redesign</strong> - Pick a popular app and improve its user experience</li>
-                        <li><strong>Food Delivery Service Dashboard</strong> - Design an admin panel for restaurant owners</li>
-                        <li><strong>Educational Platform for Rural Students</strong> - Focus on accessibility and simple navigation</li>
-                        <li><strong>Personal Finance Tracker</strong> - Create intuitive budgeting and expense tracking interface</li>
-                        <li><strong>Healthcare Appointment Booking System</strong> - Design for elderly users with larger fonts and simple flows</li>
-                        <li><strong>Local Event Discovery App</strong> - Help users find events in their city with location-based features</li>
-                    </ul>
-                </div>
-
-                <div class="start-roadmap-container">
-                    <button class="btn btn-primary btn-start-roadmap" onclick="startRoadmap()">
-                        <span style="margin-right: 8px;">🚀</span> Start This Roadmap
+    <!-- LOGIN PAGE -->
+    <div id="login" class="page">
+        <section class="auth-section">
+            <div class="auth-container">
+                <h2 class="auth-heading">Welcome Back!</h2>
+                <p class="auth-subtext">Login to your account to access personalized features and roadmap progress.</p>
+                <div class="auth-error" id="authError" style="display: none;"></div>
+                <div class="auth-success" id="authSuccess" style="display: none;"></div>
+                <form id="loginForm">
+                    <div class="auth-form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required autocomplete="username">
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary auth-btn" style="width: 100%;">
+                        <span style="display: inline-block; margin-right: 8px;">🔑</span> Login
                     </button>
+                </form>
+                <!-- Add register link below login button -->
+                <div class="auth-switch" style="margin-top:18px;">
+                    New user? <a href="#" data-page="register" id="registerLink">Register</a>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ABOUT PAGE -->
-    <div id="about" class="page">
-        <section class="about-section">
-            <div class="container">
-                <div class="marquee">
-                    <div class="marquee-content" style="color: var(--primary-color);">
-                        🚀 Empowering Tier 2/3 College Students • Building Bridges to Dream Careers • Innovation in Education
+    <!-- REGISTER PAGE -->
+    <div id="register" class="page">
+        <section class="auth-section">
+            <div class="auth-container">
+                <h2 class="auth-heading">Create Your Account</h2>
+                <p class="auth-subtext">Register to start your personalized career journey with SkillMatch.</p>
+                <div class="auth-error" id="registerError" style="display: none;"></div>
+                <div class="auth-success" id="registerSuccess" style="display: none;"></div>
+                <form id="registerForm">
+                    <div class="auth-form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" required autocomplete="username">
                     </div>
-                </div>
-                <h1 class="section-title">About SkillMatch</h1>
-                
-                <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">Our Vision</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">To bridge the gap between traditional college education and modern industry requirements, empowering students from Tier 2 and 3 colleges to achieve their dream careers through personalized learning paths.</p>
-                </div>
-
-                <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">Our Mission</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">We believe every student deserves equal opportunities regardless of their college tier. Our AI-powered platform creates custom learning roadmaps, connecting academic knowledge with practical industry skills through curated resources, peer networks, and real-world projects.</p>
-                </div>
-
-                <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">Who We Serve</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">Our platform is specifically designed for students from Tier 2 and 3 colleges who are ambitious, motivated, and ready to take control of their career journey. We understand the unique challenges you face and provide the tools and community support needed to overcome them.</p>
-                </div>
-
-                <h2 class="section-title">Meet Our Team</h2>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-avatar">KS</div>
-                        <h3>Sasi Priya</h3>
-                        <i>Team Lead</i>
-                        <p>Visionary & Direction Setter</p>
+                    <div class="auth-form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" required autocomplete="new-password">
                     </div>
-                    <div class="team-member">
-                        <div class="member-avatar">AH</div>
-                        <h3>Hasini</h3>
-                        <i>Frontend Developer</i>
-                        <p>Website Interface Builder </p>
+                    <div class="auth-form-group">
+                        <label for="regPhone">Phone Number</label>
+                        <input type="tel" id="regPhone" required pattern="[0-9]{10}" maxlength="15" autocomplete="tel">
                     </div>
-                    <div class="team-member">
-                        <div class="member-avatar">TS</div>
-                        <h3>Sirikha</h3>
-                        <i>Head of Content</i>
-                        <p>Information & Impact
-                        </p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-avatar">LA</div>
-                        <h3>Aasritha</h3>
-                        <i>UI/UX Designer</i>
-                        <p>Design & User Experience</p>
-                    </div>
+                    <button type="submit" class="btn btn-primary auth-btn" style="width: 100%;">
+                        <span style="display: inline-block; margin-right: 8px;">📝</span> Register
+                    </button>
+                </form>
+                <div class="auth-switch" style="margin-top:18px;">
+                    Already have an account? <a href="#" data-page="login" id="loginLink">Login</a>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>SkillMatch</h3>
-                    <p>Bridging the gap between your degree and dream career through personalized learning paths.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#" data-page="home">Home</a></li>
-                        <li><a href="#" data-page="form">Find Your Path</a></li>
-                        <li><a href="#" data-page="roadmap">Sample Roadmap</a></li>
-                        <li><a href="#" data-page="about">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#" onclick="alert('Feature coming soon!')">Help Center</a></li>
-                        <li><a href="#" onclick="alert('Feature coming soon!')">Contact Us</a></li>
-                        <li><a href="#" onclick="alert('Feature coming soon!')">FAQ</a></li>
-                        <li><a href="#" onclick="alert('Feature coming soon!')">Community</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <ul>
-                        <li><a href="#" onclick="alert('Follow us on LinkedIn!')">LinkedIn</a></li>
-                        <li><a href="#" onclick="alert('Follow us on Twitter!')">Twitter</a></li>
-                        <li><a href="#" onclick="alert('Follow us on Instagram!')">Instagram</a></li>
-                        <li><a href="#" onclick="alert('Subscribe to our YouTube!')">YouTube</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 SkillMatch. All rights reserved. Made with ❤️ for students everywhere.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Add success animation overlay -->
-    <div class="success-animation" id="successAnimation">
-        <div class="checkmark-container">
-            <div class="checkmark">✓</div>
-        </div>
-    </div>
-
+    <!-- Add this script before </body> -->
     <script>
-        // Page Navigation
-        function showPage(pageId) {
-            console.log("Showing page:", pageId); // Debug log
-            
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
+    // Hamburger menu toggle
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const navMenu = document.getElementById('navMenu');
+    hamburgerMenu.addEventListener('click', function(e) {
+        hamburgerMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        e.stopPropagation();
+    });
+
+    // Close nav menu when clicking outside (mobile)
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            if (!navMenu.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburgerMenu.classList.remove('active');
+            }
+        }
+    });
+
+    // User profile dropdown toggle
+    const userProfileNav = document.getElementById('userProfileNav');
+    const userMenu = document.getElementById('userMenu');
+    if (userProfileNav) {
+        userProfileNav.addEventListener('click', function(e) {
+            userMenu.classList.toggle('active');
+            e.stopPropagation();
+        });
+    }
+    // Close user menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (userMenu && !userMenu.contains(e.target) && !userProfileNav.contains(e.target)) {
+            userMenu.classList.remove('active');
+        }
+    });
+
+    // Example: Show/hide login/profile nav items (replace with your auth logic)
+    function updateNavAuth(isLoggedIn, userEmail) {
+        const authNavItem = document.querySelector('.auth-nav-item');
+        const userProfile = document.querySelector('.user-profile');
+        if (isLoggedIn) {
+            if (authNavItem) authNavItem.style.display = 'none';
+            if (userProfile) {
+                userProfile.style.display = 'flex';
+                userProfile.querySelector('.user-email').textContent = userEmail || 'user@example.com';
+            }
+        } else {
+            if (authNavItem) authNavItem.style.display = 'block';
+            if (userProfile) userProfile.style.display = 'none';
+        }
+    }
+    // Call updateNavAuth(false) for logged out, updateNavAuth(true, 'your@email.com') for logged in
+
+    // Navigation page switching (optional, if not handled elsewhere)
+    document.querySelectorAll('.nav-menu a[data-page]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.page').forEach(function(page) {
                 page.classList.remove('active');
-                console.log("Removed active from:", page.id); // Debug log
             });
-            
-            // Show selected page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                console.log("Added active to:", pageId); // Debug log
+            document.querySelectorAll('.nav-menu a').forEach(function(a) {
+                a.classList.remove('active');
+            });
+            const pageId = link.getAttribute('data-page');
+            const pageEl = document.getElementById(pageId);
+            if (pageEl) pageEl.classList.add('active');
+            link.classList.add('active');
+            // Close nav menu on mobile after click
+            navMenu.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        });
+    });
+
+    // Professional login page logic
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const errorDiv = document.getElementById('authError');
+        const successDiv = document.getElementById('authSuccess');
+        const loginBtn = this.querySelector('button[type="submit"]');
+        errorDiv.style.display = 'none';
+        successDiv.style.display = 'none';
+        loginBtn.disabled = true;
+        loginBtn.textContent = 'Logging in...';
+
+        // Trim and lowercase email for robust comparison
+        const email = emailInput.value.trim().toLowerCase();
+        const password = passwordInput.value;
+
+        // Simple validation
+        if (!email || !password) {
+            errorDiv.textContent = 'Please enter both email and password.';
+            errorDiv.style.display = 'block';
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Login';
+            return;
+        }
+        // Simulate async login (replace with real API call)
+        setTimeout(function() {
+            // Accept only demo credentials
+            if (email === 'user@example.com' && password === 'password123') {
+                successDiv.textContent = 'Login successful! Redirecting...';
+                successDiv.style.display = 'block';
+                errorDiv.style.display = 'none';
+                updateNavAuth(true, email);
+                setTimeout(function() {
+                    document.querySelectorAll('.page').forEach(function(page) {
+                        page.classList.remove('active');
+                    });
+                    document.getElementById('home').classList.add('active');
+                    document.querySelectorAll('.nav-menu a').forEach(function(a) {
+                        a.classList.remove('active');
+                    });
+                    document.querySelector('.nav-menu a[data-page="home"]').classList.add('active');
+                }, 1200);
             } else {
-                console.error("Target page not found:", pageId); // Debug error
+                errorDiv.textContent = 'Invalid email or password. Please try again.';
+                errorDiv.style.display = 'block';
+                successDiv.style.display = 'none';
             }
-            
-            // Update active navigation link
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Login';
+        }, 900);
+    });
 
-        // Degree-specific career options with detailed goals
-        const degreeCareerMapping = {
-            'btech-cse': [
-                { value: 'software-engineer', text: 'Software Engineer at FAANG/MAMAA (Meta, Amazon, Microsoft, Apple, Alphabet)' },
-                { value: 'ai-ml-engineer', text: 'AI/ML Engineer (OpenAI, NVIDIA, DeepMind)' },
-                { value: 'data-scientist', text: 'Data Scientist' },
-                { value: 'cybersecurity-specialist', text: 'Cybersecurity Specialist' },
-                { value: 'cloud-architect', text: 'Cloud Solutions Architect' },
-                { value: 'game-developer', text: 'Game Developer' },
-                { value: 'full-stack-developer', text: 'Full-Stack Developer' },
-                { value: 'blockchain-developer', text: 'Blockchain Developer / Web3 Engineer' },
-                { value: 'research-scientist', text: 'Research Scientist in AI' },
-                { value: 'product-manager', text: 'Product Manager in Tech' }
-            ],
-            'btech-mechanical': [
-                { value: 'automotive-engineer', text: 'Automotive Design Engineer (Tesla, BMW, Rolls-Royce)' },
-                { value: 'aerospace-engineer', text: 'Aerospace Engineer (NASA, ISRO, SpaceX, Boeing)' },
-                { value: 'robotics-engineer', text: 'Robotics Engineer' },
-                { value: 'industrial-automation', text: 'Industrial Automation Engineer' },
-                { value: 'hvac-engineer', text: 'HVAC Design Engineer' },
-                { value: 'product-design', text: 'Product Design Specialist' },
-                { value: 'marine-engineer', text: 'Marine Engineer' },
-                { value: 'mechanical-rd', text: 'Mechanical R&D Engineer' },
-                { value: 'manufacturing-engineer', text: 'Manufacturing Systems Engineer' },
-                { value: 'maintenance-strategist', text: 'Maintenance Strategist for Smart Factories' }
-            ],
-            'btech-electrical': [
-                { value: 'electrical-design', text: 'Electrical Design Engineer' },
-                { value: 'power-systems', text: 'Power Systems Engineer (Renewable Energy Focus)' },
-                { value: 'embedded-systems', text: 'Embedded Systems Engineer' },
-                { value: 'ev-engineer', text: 'Electric Vehicle (EV) Engineer' },
-                { value: 'control-systems', text: 'Control Systems Engineer' },
-                { value: 'hardware-engineer', text: 'Electronics Hardware Engineer' },
-                { value: 'smart-grid', text: 'Smart Grid Engineer' },
-                { value: 'semiconductor-design', text: 'Semiconductor Design Engineer (Intel, AMD, Qualcomm)' },
-                { value: 'signal-processing', text: 'Signal Processing Engineer' },
-                { value: 'robotics-control', text: 'Robotics Control Engineer' }
-            ],
-            'btech-civil': [
-                { value: 'structural-engineer', text: 'Structural Engineer (Skyscrapers, Bridges, Mega Projects)' },
-                { value: 'geotechnical-engineer', text: 'Geotechnical Engineer' },
-                { value: 'transportation-planner', text: 'Transportation Planner (Smart Cities)' },
-                { value: 'project-manager', text: 'Project Manager (Construction Giants like L&T, Bechtel)' },
-                { value: 'water-resources', text: 'Water Resources Engineer' },
-                { value: 'urban-planner', text: 'Urban Planner' },
-                { value: 'construction-automation', text: 'Construction Automation Engineer' },
-                { value: 'environmental-engineer', text: 'Environmental Engineer' },
-                { value: 'bim-specialist', text: 'BIM (Building Information Modeling) Specialist' },
-                { value: 'disaster-management', text: 'Disaster Management Engineer' }
-            ],
-            'bcom': [
-                { value: 'chartered-accountant', text: 'Chartered Accountant (CA)' },
-                { value: 'investment-banker', text: 'Investment Banker' },
-                { value: 'financial-analyst', text: 'Financial Analyst' },
-                { value: 'risk-manager', text: 'Risk Manager' },
-                { value: 'management-consultant', text: 'Management Consultant (McKinsey, BCG, Bain)' },
-                { value: 'tax-consultant', text: 'Tax Consultant' },
-                { value: 'corporate-finance', text: 'Corporate Finance Manager' },
-                { value: 'stock-market-analyst', text: 'Stock Market Analyst / Trader' },
-                { value: 'business-development', text: 'Business Development Manager' },
-                { value: 'ecommerce-operations', text: 'E-commerce Operations Manager' }
-            ],
-            'bba': [
-                { value: 'business-manager', text: 'Business Manager' },
-                { value: 'marketing-manager', text: 'Marketing Manager' },
-                { value: 'sales-executive', text: 'Sales Executive' },
-                { value: 'hr-manager', text: 'Human Resources Manager' },
-                { value: 'operations-manager', text: 'Operations Manager' },
-                { value: 'entrepreneur', text: 'Entrepreneur' },
-                { value: 'consultant', text: 'Management Consultant' },
-                { value: 'project-coordinator', text: 'Project Coordinator' },
-                { value: 'business-analyst', text: 'Business Analyst' },
-                { value: 'digital-marketer', text: 'Digital Marketer' }
-            ],
-            'ba-english': [
-                { value: 'content-writer', text: 'Content Writer' },
-                { value: 'editor', text: 'Editor' },
-                { value: 'copywriter', text: 'Copywriter' },
-                { value: 'digital-marketer', text: 'Digital Marketer' },
-                { value: 'communications-specialist', text: 'Communications Specialist' },
-                { value: 'pr-manager', text: 'Public Relations Manager' },
-                { value: 'technical-writer', text: 'Technical Writer' },
-                { value: 'esl-teacher', text: 'ESL Teacher' },
-                { value: 'social-media-manager', text: 'Social Media Manager' },
-                { value: 'journalist', text: 'Journalist' }
-            ],
-            'bsc-math': [
-                { value: 'data-scientist', text: 'Data Scientist' },
-                { value: 'quantitative-analyst', text: 'Quantitative Analyst' },
-                { value: 'statistician', text: 'Statistician' },
-                { value: 'actuarial-scientist', text: 'Actuarial Scientist' },
-                { value: 'operations-researcher', text: 'Operations Researcher' },
-                { value: 'cryptographer', text: 'Cryptographer' },
-                { value: 'machine-learning-engineer', text: 'Machine Learning Engineer' },
-                { value: 'financial-analyst', text: 'Financial Analyst' },
-                { value: 'biostatistician', text: 'Biostatistician' },
-                { value: 'mathematics-teacher', text: 'Mathematics Teacher' }
-            ],
-            'bsc-physics': [
-                { value: 'data-scientist', text: 'Data Scientist' },
-                { value: 'research-physicist', text: 'Research Physicist' },
-                { value: 'engineering-physicist', text: 'Engineering Physicist' },
-                { value: 'medical-physicist', text: 'Medical Physicist' },
-                { value: 'space-scientist', text: 'Space Scientist (NASA, ISRO)' },
-                { value: 'geophysicist', text: 'Geophysicist' },
-                { value: 'materials-scientist', text: 'Materials Scientist' },
-                { value: 'computational-physicist', text: 'Computational Physicist' },
-                { value: 'meteorologist', text: 'Meteorologist' },
-                { value: 'quantum-computing-researcher', text: 'Quantum Computing Researcher' }
-            ],
-            'bca': [
-                { value: 'software-engineer', text: 'Software Engineer' },
-                { value: 'web-developer', text: 'Web Developer' },
-                { value: 'mobile-app-developer', text: 'Mobile App Developer' },
-                { value: 'systems-administrator', text: 'Systems Administrator' },
-                { value: 'database-administrator', text: 'Database Administrator' },
-                { value: 'network-engineer', text: 'Network Engineer' },
-                { value: 'cybersecurity-analyst', text: 'Cybersecurity Analyst' },
-                { value: 'ui-ux-designer', text: 'UI/UX Designer' },
-                { value: 'game-developer', text: 'Game Developer' },
-                { value: 'data-analyst', text: 'Data Analyst' }
-            ]
-        };
-
-        // Function to update career options based on selected degree
-        function updateCareerOptions() {
-            const degreeSelect = document.getElementById('degree');
-            const careerSelect = document.getElementById('career');
-            const selectedDegree = degreeSelect.value;
-
-            // Clear existing options
-            careerSelect.innerHTML = '';
-
-            if (!selectedDegree) {
-                careerSelect.innerHTML = '<option value="">First select your degree</option>';
-                return;
-            }
-
-            // Add default option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = 'Select your career goal';
-            careerSelect.appendChild(defaultOption);
-
-            // Get relevant careers for the selected degree
-            const relevantCareers = degreeCareerMapping[selectedDegree] || [];
-
-            // Add career options with icons
-            relevantCareers.forEach(career => {
-                const option = document.createElement('option');
-                option.value = career.value;
-                
-                // Add appropriate icon based on career
-                const icon = getCareerOptionIcon(career.value);
-                option.textContent = `${icon} ${career.text}`;
-                
-                option.style.fontWeight = '400';
-                careerSelect.appendChild(option);
-            });
-
-            // If no specific careers are found for this degree, show generic options
-            if (relevantCareers.length === 0) {
-                const genericCareers = [
-                    { value: 'software-engineer', text: 'Software Engineer' },
-                    { value: 'data-scientist', text: 'Data Scientist' },
-                    { value: 'ux-designer', text: 'UX Designer' },
-                    { value: 'digital-marketer', text: 'Digital Marketer' },
-                    { value: 'product-manager', text: 'Product Manager' },
-                    { value: 'business-analyst', text: 'Business Analyst' },
-                    { value: 'content-writer', text: 'Content Writer' },
-                    { value: 'graphic-designer', text: 'Graphic Designer' },
-                    { value: 'web-developer', text: 'Web Developer' },
-                    { value: 'data-analyst', text: 'Data Analyst' }
-                ];
-                
-                genericCareers.forEach(career => {
-                    const option = document.createElement('option');
-                    option.value = career.value;
-                    option.textContent = career.text;
-                    careerSelect.appendChild(option);
-                });
-            }
-        }
-        
-        // Function to get appropriate icon for career options
-        function getCareerOptionIcon(career) {
-            // Map career values to icons
-            const iconMap = {
-                'software-engineer': '👨‍💻',
-                'data-scientist': '📊',
-                'ux-designer': '🎨',
-                'digital-marketer': '📣',
-                'product-manager': '📱',
-                'business-analyst': '📈',
-                'content-writer': '✍️',
-                'graphic-designer': '🖌️',
-                'web-developer': '🌐',
-                'data-analyst': '📊',
-                'ai-ml-engineer': '🤖',
-                'cybersecurity-specialist': '🔒',
-                'cloud-architect': '☁️',
-                'game-developer': '🎮',
-                'full-stack-developer': '⚙️',
-                'blockchain-developer': '⛓️',
-                'research-scientist': '🔬',
-                'automotive-engineer': '🚗',
-                'aerospace-engineer': '🚀',
-                'robotics-engineer': '🦾'
-                // Add more as needed
-            };
-            
-            return iconMap[career] || '💼'; // Default icon if not found
-        }
-        
-        // Function to get appropriate icon for degree options
-        function getDegreeIcon(degree) {
-            // Map degree values to icons
-            const iconMap = {
-                'btech-cse': '💻',
-                'btech-mechanical': '⚙️',
-                'btech-electrical': '⚡',
-                'btech-civil': '🏗️',
-                'bcom': '💰',
-                'bba': '📊',
-                'ba-english': '📝',
-                'bsc-math': '🔢',
-                'bsc-physics': '⚛️',
-                'bca': '🖥️'
-            };
-            
-            return iconMap[degree] || '🎓'; // Default icon if not found
-        }
-        
-        // Initialize dropdown options with icons when page loads
-        window.addEventListener('load', function() {
-            // Populate degree dropdown with icons
-            const degreeSelect = document.getElementById('degree');
-            const degreeOptions = degreeSelect.querySelectorAll('option');
-            
-            // Skip the first option (placeholder)
-            for(let i = 1; i < degreeOptions.length; i++) {
-                const option = degreeOptions[i];
-                const icon = getDegreeIcon(option.value);
-                option.textContent = `${icon} ${option.textContent}`;
-            }
-            
-            // Initialize career dropdown
-            updateCareerOptions();
+    // Navigation for register/login links
+    document.getElementById('registerLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.page').forEach(function(page) {
+            page.classList.remove('active');
         });
-
-        // Scroll animation function
-        function checkScrollAnimation() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150; // How much of the element needs to be visible
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('animated');
-                }
-            });
-        }
-        
-        // Add scroll event listener
-        window.addEventListener('scroll', checkScrollAnimation);
-        
-        // Run once on page load to check for elements already in view
-        window.addEventListener('load', () => {
-            checkScrollAnimation();
-            
-            // Add career icon to roadmap header dynamically
-            updateRoadmapHeaderIcon();
+        document.getElementById('register').classList.add('active');
+        document.querySelectorAll('.nav-menu a').forEach(function(a) {
+            a.classList.remove('active');
         });
-        
-        // Function to update roadmap title with career icon
-        function updateRoadmapHeaderIcon() {
-            const roadmapHeaderTitle = document.querySelector('.roadmap-header h1');
-            if (roadmapHeaderTitle) {
-                const title = roadmapHeaderTitle.textContent;
-                
-                // Find degree and career parts
-                const parts = title.split(':');
-                if (parts.length > 1) {
-                    const degreePart = parts[1].split('→')[0].trim();
-                    const careerPart = parts[1].split('→')[1].trim();
-                    
-                    // Get appropriate icon for career
-                    const icon = getCareerIcon(careerPart);
-                    
-                    roadmapHeaderTitle.innerHTML = `Sample Roadmap: <span>${degreePart}</span> <span class="degree-career-separator">→</span> <span>${icon} ${careerPart}</span>`;
-                }
-            }
-        }
-        
-        // Enhanced roadmap generation to include icons
-        function generateRoadmap() {
-            const degree = document.getElementById('degree').value;
-            const career = document.getElementById('career').value;
-            const experience = document.getElementById('experience').value;
-
-            if (!degree || !career || !experience) {
-                alert('Please fill in all fields to generate your roadmap!');
-                return;
-            }
-
-            // Enhanced Roadmap data
-            const roadmaps = {
-                'software-engineer': {
-                    learningPath: [
-                        { title: 'Programming Fundamentals', duration: 'Weeks 1-2', content: 'Master JavaScript/Python basics, data structures, algorithms' },
-                        { title: 'Web Development', duration: 'Weeks 3-4', content: 'HTML, CSS, React/Angular, responsive design' },
-                        { title: 'Backend Development', duration: 'Weeks 5-6', content: 'Node.js/Django, databases, REST APIs' },
-                        { title: 'DevOps & Deployment', duration: 'Weeks 7-8', content: 'Git, AWS/Azure, CI/CD, Docker basics' }
-                    ],
-                    jobRoles: [
-                        { title: 'Junior Software Developer', salary: '₹3-6 LPA' },
-                        { title: 'Frontend Developer', salary: '₹4-7 LPA' },
-                        { title: 'Full Stack Developer', salary: '₹5-8 LPA' },
-                        { title: 'Software Engineer Trainee', salary: '₹3-5 LPA' }
-                    ],
-                    companies: [
-                        { name: 'TCS', url: 'https://www.tcs.com/careers' },
-                        { name: 'Infosys', url: 'https://www.infosys.com/careers' },
-                        { name: 'Wipro', url: 'https://careers.wipro.com' },
-                        { name: 'Accenture', url: 'https://www.accenture.com/in-en/careers' },
-                        { name: 'Cognizant', url: 'https://careers.cognizant.com' },
-                        { name: 'Capgemini', url: 'https://www.capgemini.com/careers' }
-                    ],
-                    applicationTips: 'Build a strong GitHub profile with 3-5 projects. Practice coding on LeetCode. Prepare for technical interviews focusing on DSA and system design basics.',
-                    resources: [
-                        'FreeCodeCamp - Full Stack Web Development (Free)',
-                        'The Odin Project - Complete Curriculum (Free)',
-                        'LeetCode - Coding Practice (Free + Premium)',
-                        'System Design Primer - GitHub (Free)',
-                        'Clean Code by Robert Martin (Book)',
-                        'JavaScript: The Good Parts (Book)'
-                    ],
-
-                    projects: [
-                        'Personal Portfolio Website',
-                        'Todo App with CRUD Operations',
-                        'E-commerce Website Clone',
-                        'REST API with Database',
-                        'Real-time Chat Application',
-                        'Open Source Contribution'
-                    ]
-                },
-                'data-scientist': {
-                    learningPath: [
-                        { title: 'Python & Statistics', duration: 'Weeks 1-2', content: 'Python programming, NumPy, Pandas, basic statistics' },
-                        { title: 'Data Analysis', duration: 'Weeks 3-4', content: 'Data cleaning, EDA, visualization with Matplotlib/Seaborn' },
-                        { title: 'Machine Learning', duration: 'Weeks 5-6', content: 'Scikit-learn, supervised/unsupervised learning' },
-                        { title: 'Advanced Topics', duration: 'Weeks 7-8', content: 'Deep learning basics, model deployment, SQL' }
-                    ],
-                    jobRoles: [
-                        { title: 'Data Analyst', salary: '₹4-7 LPA' },
-                        { title: 'Junior Data Scientist', salary: '₹6-10 LPA' },
-                        { title: 'Business Analyst', salary: '₹5-8 LPA' },
-                        { title: 'ML Engineer Trainee', salary: '₹5-9 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Flipkart', url: 'https://www.flipkartcareers.com' },
-                        { name: 'Zomato', url: 'https://www.zomato.com/careers' },
-                        { name: 'Swiggy', url: 'https://careers.swiggy.com' },
-                        { name: 'Paytm', url: 'https://jobs.paytm.com' },
-                        { name: 'Ola', url: 'https://www.olacabs.com/careers' },
-                        { name: 'Analytics Vidhya', url: 'https://www.analyticsvidhya.com/jobs' }
-                    ],
-                    applicationTips: 'Create a portfolio on Kaggle with competition participation. Build end-to-end ML projects. Learn SQL and cloud platforms like AWS.',
-                    resources: [
-                        'Kaggle Learn - Data Science Courses (Free)',
-                        'Python for Data Analysis by Wes McKinney (Book)',
-                        'Machine Learning Course by Andrew Ng (Coursera)',
-                        'Pandas Documentation & Tutorials (Free)',
-                        'Seaborn & Matplotlib Tutorials (Free)',
-                        'SQL for Data Science - Mode Analytics (Free)'
-                    ],
-                    projects: [
-                        'Customer Segmentation Analysis',
-                        'Stock Price Prediction Model',
-                        'Sales Forecasting Dashboard',
-                        'Sentiment Analysis of Social Media',
-                        'Recommendation System',
-                        'COVID-19 Data Analysis'
-                    ]
-                },
-                'ux-designer': {
-                    learningPath: [
-                        { title: 'UX Fundamentals', duration: 'Weeks 1-2', content: 'Design thinking, user research, personas, user journey mapping' },
-                        { title: 'UI Design', duration: 'Weeks 3-4', content: 'Visual design principles, color theory, typography, Figma/Adobe XD' },
-                        { title: 'Prototyping', duration: 'Weeks 5-6', content: 'Wireframing, interactive prototypes, usability testing' },
-                        { title: 'Portfolio Development', duration: 'Weeks 7-8', content: 'Case studies, design portfolio, presentation skills' }
-                    ],
-                    jobRoles: [
-                        { title: 'UI/UX Designer', salary: '₹4-8 LPA' },
-                        { title: 'Product Designer', salary: '₹6-12 LPA' },
-                        { title: 'Visual Designer', salary: '₹3-6 LPA' },
-                        { title: 'UX Researcher', salary: '₹5-9 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Swiggy', url: 'https://careers.swiggy.com' },
-                        { name: 'Zomato', url: 'https://www.zomato.com/careers' },
-                        { name: 'Paytm', url: 'https://jobs.paytm.com' },
-                        { name: 'PhonePe', url: 'https://www.phonepe.com/careers' },
-                        { name: 'Myntra', url: 'https://www.myntra.com/careers' },
-                        { name: 'CRED', url: 'https://careers.cred.club' }
-                    ],
-                    applicationTips: 'Build a strong design portfolio with 3-4 detailed case studies. Focus on problem-solving approach and user-centered design process.',
-                    resources: [
-                        'Google UX Design Certificate (Coursera)',
-                        'The Design of Everyday Things by Don Norman',
-                        'Figma Design Tutorials (YouTube - Free)',
-                        'UX Mastery Blog & Community (Free)',
-                        'Adobe XD Tutorials (Free)',
-                        'Interaction Design Foundation (Paid)'
-                    ],
-                    projects: [
-                        'Mobile App Redesign Case Study',
-                        'E-commerce Website Wireframes',
-                        'Food Delivery App Prototype',
-                        'Banking App User Flow Design',
-                        'Accessibility Improvement Project',
-                        'Personal Portfolio Website'
-                    ]
-                },
-                'digital-marketer': {
-                    learningPath: [
-                        { title: 'Marketing Fundamentals', duration: 'Weeks 1-2', content: 'Digital marketing basics, customer journey, market research' },
-                        { title: 'Social Media & Content', duration: 'Weeks 3-4', content: 'Social media strategy, content creation, copywriting' },
-                        { title: 'Paid Advertising', duration: 'Weeks 5-6', content: 'Google Ads, Facebook Ads, campaign optimization' },
-                        { title: 'Analytics & SEO', duration: 'Weeks 7-8', content: 'Google Analytics, SEO fundamentals, performance tracking' }
-                    ],
-                    jobRoles: [
-                        { title: 'Digital Marketing Executive', salary: '₹3-6 LPA' },
-                        { title: 'Social Media Manager', salary: '₹4-7 LPA' },
-                        { title: 'Performance Marketing Specialist', salary: '₹5-9 LPA' },
-                        { title: 'Content Marketing Manager', salary: '₹4-8 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Byju\'s', url: 'https://byjus.com/careers' },
-                        { name: 'Unacademy', url: 'https://unacademy.com/careers' },
-                        { name: 'Meesho', url: 'https://www.meesho.com/careers' },
-                        { name: 'Nykaa', url: 'https://www.nykaa.com/careers' },
-                        { name: 'BigBasket', url: 'https://www.bigbasket.com/careers' },
-                        { name: 'Urban Company', url: 'https://www.urbancompany.com/careers' }
-                    ],
-                    applicationTips: 'Create your own brand online. Run small campaigns for local businesses. Get Google Ads and Facebook Blueprint certifications.',
-                    resources: [
-                        'Google Digital Marketing Courses (Free)',
-                        'HubSpot Academy Certifications (Free)',
-                        'Facebook Blueprint - Social Media Ads (Free)',
-                        'SEMrush Academy - SEO & PPC (Free)',
-                        'Content Marketing Institute Blog (Free)',
-                        'Google Analytics Individual Qualification'
-                    ],
-                    projects: [
-                        'Social Media Campaign for Local Business',
-                        'SEO Audit and Strategy Report',
-                        'Email Marketing Campaign Design',
-                        'Google Ads Campaign Setup',
-                        'Content Calendar for Brand',
-                        'Analytics Dashboard Creation'
-                    ]
-                },
-                'product-manager': {
-                    learningPath: [
-                        { title: 'Product Fundamentals', duration: 'Weeks 1-2', content: 'Product lifecycle, market analysis, user research basics' },
-                        { title: 'Technical Skills', duration: 'Weeks 3-4', content: 'SQL basics, analytics tools, wireframing, project management' },
-                        { title: 'Strategy & Planning', duration: 'Weeks 5-6', content: 'Product roadmaps, feature prioritization, stakeholder management' },
-                        { title: 'Leadership & Communication', duration: 'Weeks 7-8', content: 'Team collaboration, presentation skills, decision making' }
-                    ],
-                    jobRoles: [
-                        { title: 'Associate Product Manager', salary: '₹6-10 LPA' },
-                        { title: 'Product Analyst', salary: '₹5-8 LPA' },
-                        { title: 'Junior Product Manager', salary: '₹7-12 LPA' },
-                        { title: 'Product Owner', salary: '₹6-10 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Flipkart', url: 'https://www.flipkartcareers.com' },
-                        { name: 'Amazon', url: 'https://www.amazon.jobs/en/teams/amazon-india' },
-                        { name: 'Google', url: 'https://careers.google.com/locations/india' },
-                        { name: 'Microsoft', url: 'https://careers.microsoft.com/professionals/us/en/c/product-management-jobs' },
-                        { name: 'Razorpay', url: 'https://razorpay.com/jobs' },
-                        { name: 'Swiggy', url: 'https://careers.swiggy.com' }
-                    ],
-                    applicationTips: 'Build case studies of product analysis. Learn SQL and basic analytics. Practice product thinking with real examples. Create a portfolio showcasing problem-solving approach.',
-                    resources: [
-                        'Product School - Product Management Courses',
-                        'Coursera - Google Product Management Certificate',
-                        'Lenny\'s Newsletter - Product Management Insights',
-                        'SQL for Data Science - Coursera',
-                        'Figma - Product Design Tool (Free)',
-                        'Product Hunt - Stay updated with new products'
-                    ],
-                    projects: [
-                        'Product Feature Analysis Case Study',
-                        'Market Research Report',
-                        'Product Roadmap for Existing App',
-                        'A/B Testing Strategy Document',
-                        'User Journey Mapping Exercise',
-                        'Competitive Analysis Dashboard'
-                    ]
-                },
-                'business-analyst': {
-                    learningPath: [
-                        { title: 'Business Analysis Fundamentals', duration: 'Weeks 1-2', content: 'Requirements gathering, stakeholder analysis, business process mapping' },
-                        { title: 'Data Analysis Tools', duration: 'Weeks 3-4', content: 'Advanced Excel, SQL, Power BI, data visualization' },
-                        { title: 'Process Improvement', duration: 'Weeks 5-6', content: 'Process optimization, workflow analysis, documentation' },
-                        { title: 'Communication & Reporting', duration: 'Weeks 7-8', content: 'Business reporting, presentation skills, stakeholder management' }
-                    ],
-                    jobRoles: [
-                        { title: 'Business Analyst', salary: '₹4-7 LPA' },
-                        { title: 'Process Analyst', salary: '₹4-6 LPA' },
-                        { title: 'Systems Analyst', salary: '₹5-8 LPA' },
-                        { title: 'Junior Consultant', salary: '₹5-9 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Accenture', url: 'https://www.accenture.com/in-en/careers' },
-                        { name: 'Deloitte', url: 'https://www2.deloitte.com/in/en/pages/careers/careers.html' },
-                        { name: 'PwC', url: 'https://www.pwc.in/careers.html' },
-                        { name: 'EY', url: 'https://www.ey.com/en_in/careers' },
-                        { name: 'Capgemini', url: 'https://www.capgemini.com/careers' },
-                        { name: 'IBM', url: 'https://www.ibm.com/careers/search' }
-                    ],
-                    applicationTips: 'Master Excel and SQL. Create process improvement case studies. Learn business process modeling tools. Develop strong analytical and communication skills.',
-                    resources: [
-                        'IIBA - Business Analysis Body of Knowledge',
-                        'Coursera - Business Analysis Specialization',
-                        'Microsoft Excel Advanced Course',
-                        'SQL Tutorial - W3Schools (Free)',
-                        'Power BI Learning Path - Microsoft',
-                        'Lucidchart - Process Mapping Tool'
-                    ],
-                    projects: [
-                        'Business Process Analysis Report',
-                        'Requirements Documentation',
-                        'Data Analysis Dashboard',
-                        'Process Improvement Proposal',
-                        'Stakeholder Analysis Framework',
-                        'Business Case Study Presentation'
-                    ]
-                },
-                'content-writer': {
-                   
-                    learningPath: [
-                        { title: 'Writing Fundamentals', duration: 'Weeks 1-2', content: 'Grammar, style guides, different writing formats, content strategy' },
-                        { title: 'Digital Content', duration: 'Weeks 3-4', content: 'SEO writing, social media content, email marketing, blog writing' },
-                        { title: 'Content Marketing', duration: 'Weeks 5-6', content: 'Content planning, audience research, brand voice, analytics' },
-                        { title: 'Portfolio & Freelancing', duration: 'Weeks 7-8', content: 'Building portfolio, client communication, project management' }
-                    ],
-                    jobRoles: [
-                        { title: 'Content Writer', salary: '₹3-6 LPA' },
-                        { title: 'Copywriter', salary: '₹4-7 LPA' },
-                        { title: 'Content Marketing Specialist', salary: '₹4-8 LPA' },
-                        { title: 'Social Media Content Creator', salary: '₹3-5 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Byju\'s', url: 'https://byjus.com/careers' },
-                        { name: 'Unacademy', url: 'https://unacademy.com/careers' },
-                        { name: 'Zomato', url: 'https://www.zomato.com/careers' },
-                        { name: 'Swiggy', url: 'https://careers.swiggy.com' },
-                        { name: 'Nykaa', url: 'https://www.nykaa.com/careers' },
-                        { name: 'Upwork', url: 'https://www.upwork.com' }
-                    ],
-                    applicationTips: 'Build a diverse writing portfolio. Start a blog or contribute to publications. Learn SEO basics. Practice different writing styles and formats.',
-                    resources: [
-                        'Grammarly - Writing Assistant Tool',
-                        'Hemingway Editor - Writing Clarity Tool',
-                        'Google Digital Marketing Course (Free)',
-                        'HubSpot Content Marketing Certification',
-                        'Coursera - Content Strategy Course',
-                        'Medium - Platform for publishing'
-                    ],
-                    projects: [
-                        'Personal Blog with 10+ Articles',
-                        'Social Media Content Calendar',
-                        'Email Marketing Campaign Series',
-                        'SEO-Optimized Website Copy',
-                        'Brand Content Style Guide',
-                        'Case Study Writing Samples'
-                    ]
-                },
-                'graphic-designer': {
-                    learningPath: [
-                        { title: 'Design Fundamentals', duration: 'Weeks 1-2', content: 'Color theory, typography, composition, design principles' },
-                        { title: 'Design Software', duration: 'Weeks 3-4', content: 'Adobe Creative Suite (Photoshop, Illustrator, InDesign), Figma' },
-                        { title: 'Brand Design', duration: 'Weeks 5-6', content: 'Logo design, brand identity, packaging design, print design' },
-                        { title: 'Portfolio Development', duration: 'Weeks 7-8', content: 'Portfolio creation, client work, freelancing basics' }
-                    ],
-                    jobRoles: [
-                        { title: 'Graphic Designer', salary: '₹3-6 LPA' },
-                        { title: 'Visual Designer', salary: '₹4-7 LPA' },
-                        { title: 'Brand Designer', salary: '₹4-8 LPA' },
-                        { title: 'UI Designer', salary: '₹4-7 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Ogilvy', url: 'https://www.ogilvy.com/careers' },
-                        { name: 'Leo Burnett', url: 'https://www.leoburnett.com/careers' },
-                        { name: 'Wunderman Thompson', url: 'https://www.wundermanthompson.com/careers' },
-                        { name: 'Dentsu', url: 'https://www.dentsu.com/careers' },
-                        { name: '99designs', url: 'https://99designs.com' },
-                        { name: 'Dribbble', url: 'https://dribbble.com/jobs' }
-                    ],
-                    applicationTips: 'Create a strong visual portfolio. Master Adobe Creative Suite. Follow design trends and build personal projects. Network with other designers.',
-                    resources: [
-                        'Adobe Creative Suite Tutorials',
-                        'Coursera - Graphic Design Specialization',
-                        'Dribbble - Design Inspiration',
-                        'Behance - Portfolio Platform',
-                        'Canva Design School (Free)',
-                        'Typography.com - Typography Resources'
-                    ],
-                    projects: [
-                        'Brand Identity Design Package',
-                        'Social Media Template Collection',
-                        'Website Landing Page Design',
-                        'Print Advertisement Series',
-                        'Logo Design Portfolio',
-                        'Package Design Concept'
-                    ]
-                },
-                'web-developer': {
-                    learningPath: [
-                        { title: 'Frontend Basics', duration: 'Weeks 1-2', content: 'HTML5, CSS3, JavaScript ES6+, responsive design' },
-                        { title: 'Frontend Frameworks', duration: 'Weeks 3-4', content: 'React.js or Vue.js, state management, component architecture' },
-                        { title: 'Backend Development', duration: 'Weeks 5-6', content: 'Node.js, Express.js, databases (MongoDB/MySQL)' },
-                        { title: 'Full Stack Integration', duration: 'Weeks 7-8', content: 'API integration, deployment, version control (Git)' }
-                    ],
-                    jobRoles: [
-                        { title: 'Frontend Developer', salary: '₹4-7 LPA' },
-                        { title: 'Backend Developer', salary: '₹5-8 LPA' },
-                        { title: 'Full Stack Developer', salary: '₹6-10 LPA' },
-                        { title: 'Web Developer', salary: '₹3-6 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Razorpay', url: 'https://razorpay.com/jobs' },
-                        { name: 'Freshworks', url: 'https://www.freshworks.com/company/careers' },
-                        { name: 'Zoho', url: 'https://www.zoho.com/careers' },
-                        { name: 'Mindtree', url: 'https://www.mindtree.com/careers' },
-                        { name: 'Hashedin', url: 'https://hashedin.com/careers' },
-                        { name: 'Thoughtworks', url: 'https://www.thoughtworks.com/careers' }
-                    ],
-                    applicationTips: 'Build responsive websites and deploy them live. Contribute to open source projects. Learn modern deployment practices.',
-                    resources: [
-                        'MDN Web Docs - HTML, CSS, JS (Free)',
-                        'Frontend Mentor Challenges (Free)',
-                        'React Official Documentation (Free)',
-                        'Node.js and Express.js Tutorials (Free)',
-                        'Git and GitHub Learning Lab (Free)',
-                        'Responsive Web Design Principles (Free)'
-                    ],
-                    projects: [
-                        'Responsive Landing Page',
-                        'Weather App with API Integration',
-                        'React Todo Application',
-                        'Personal Blog with CMS',
-                        'Restaurant Website',
-                        'Online Portfolio with Contact Form'
-                    ]
-                },
-                'data-analyst': {
-                    learningPath: [
-                        { title: 'Excel & SQL Mastery', duration: 'Weeks 1-2', content: 'Advanced Excel, SQL queries, database fundamentals' },
-                        { title: 'Data Visualization', duration: 'Weeks 3-4', content: 'Tableau/Power BI, creating dashboards, storytelling with data' },
-                        { title: 'Statistical Analysis', duration: 'Weeks 5-6', content: 'Descriptive statistics, hypothesis testing, Python basics' },
-                        { title: 'Business Intelligence', duration: 'Weeks 7-8', content: 'KPI development, business metrics, presentation skills' }
-                    ],
-                    jobRoles: [
-                        { title: 'Data Analyst', salary: '₹4-7 LPA' },
-                        { title: 'Business Analyst', salary: '₹5-8 LPA' },
-                        { title: 'Business Intelligence Analyst', salary: '₹6-9 LPA' },
-                        { title: 'Market Research Analyst', salary: '₹4-6 LPA' }
-                    ],
-                    companies: [
-                        { name: 'Deloitte', url: 'https://www2.deloitte.com/in/en/pages/careers/careers.html' },
-                        { name: 'EY', url: 'https://www.ey.com/en_in/careers' },
-                        { name: 'KPMG', url: 'https://home.kpmg/in/en/home/careers.html' },
-                        { name: 'PwC', url: 'https://www.pwc.in/careers.html' },
-                        { name: 'Mu Sigma', url: 'https://www.mu-sigma.com/careers' },
-                        { name: 'Fractal Analytics', url: 'https://fractal.ai/careers' }
-                    ],
-                    applicationTips: 'Master Excel and SQL first. Create dashboards using real datasets. Learn to present insights clearly to non-technical stakeholders.',
-                    resources: [
-                        'Excel to MySQL: Analytic Techniques (Coursera)',
-                        'SQL Tutorial - W3Schools (Free)',
-                        'Power BI Learning Path - Microsoft (Free)',
-                        'Tableau Public Training Videos (Free)',
-                        'Statistics and Probability Khan Academy (Free)',
-                        'Python for Data Analysis (Book)'
-                    ],
-                    projects: [
-                        'Sales Performance Dashboard',
-                        'Customer Behavior Analysis',
-                        'Financial Data Visualization',
-                        'Market Research Survey Analysis',
-                        'Website Traffic Analysis Report',
-                        'Business KPI Tracking Dashboard'
-                    ]
-                }
-            };
-
-            // Get roadmap data
-            const selectedRoadmap = roadmaps[career] || {
-                learningPath: [{ title: 'Basic Skills', duration: 'Week 1-4', content: 'Learn fundamental skills for this career' }],
-                jobRoles: [{ title: 'Entry Level Position', salary: '₹3-5 LPA' }],
-                companies: [{ name: 'Various Companies', url: '#' }],
-                applicationTips: 'Build relevant skills and create a strong portfolio',
-                resources: ['General resources for this field'],
-                projects: ['Basic projects to showcase skills']
-            };
-
-            // Update roadmap title
-            const degreeText = document.getElementById('degree').options[document.getElementById('degree').selectedIndex].text;
-            const careerText = document.getElementById('career').options[document.getElementById('career').selectedIndex].text;
-            const careerIcon = getCareerIcon(careerText);
-            
-            document.getElementById('roadmapTitle').innerHTML = `${degreeText} <span class="degree-career-separator">→</span> ${careerIcon} ${careerText}`;
-
-            // Generate learning path HTML
-            const learningPathHTML = selectedRoadmap.learningPath.map(phase => 
-                `<div class="learning-phase">
-                    <div class="phase-title">${phase.title}</div>
-                    <div class="phase-duration">${phase.duration}</div>
-                    <div>${phase.content}</div>
-                </div>`
-            ).join('');
-
-            // Generate job roles HTML
-            const jobRolesHTML = selectedRoadmap.jobRoles.map(role => 
-                `<div class="job-role">
-                    <div class="role-title">${role.title}</div>
-                    <div class="role-salary">${role.salary}</div>
-                </div>`
-            ).join('');
-
-            // Generate application guide HTML
-            const companiesHTML = selectedRoadmap.companies.map(company => 
-                `<a href="${company.url}" class="company-link" target="_blank">${company.name}</a>`
-            ).join('');
-
-            const applicationGuideHTML = `
-                <div class="application-tips">
-                    <strong>💡 Application Strategy:</strong><br>
-                    ${selectedRoadmap.applicationTips}
-                </div>
-                <div style="margin-top: 15px;">
-                    <strong>🏢 Top Companies to Apply:</strong><br>
-                    ${companiesHTML}
-                </div>
-            `;
-
-            // Generate resources HTML
-            const resourcesHTML = selectedRoadmap.resources.map(resource => 
-                `<div class="resource-item">📚 ${resource}</div>`
-            ).join('');
-
-            // Generate projects HTML
-            const projectsHTML = selectedRoadmap.projects.map(project => 
-                `<div class="project-item">💻 ${project}</div>`
-            ).join('');
-
-            // Update content
-            document.getElementById('learningPath').innerHTML = learningPathHTML;
-            document.getElementById('jobRoles').innerHTML = jobRolesHTML;
-            document.getElementById('applicationGuide').innerHTML = applicationGuideHTML;
-            document.getElementById('resources').innerHTML = resourcesHTML;
-            document.getElementById('projects').innerHTML = projectsHTML;
-
-            // Show roadmap
-            document.getElementById('dynamicRoadmap').style.display = 'block';
-            
-        // Scroll to roadmap
-        document.getElementById('dynamicRoadmap').scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
+    });
+    document.getElementById('loginLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.page').forEach(function(page) {
+            page.classList.remove('active');
         });
-        
-        // Add smooth scrolling to all links
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth' 
-                        });
-                    }
-                }
-            });
+        document.getElementById('login').classList.add('active');
+        document.querySelectorAll('.nav-menu a').forEach(function(a) {
+            a.classList.remove('active');
         });
+    });
+
+    // Register form logic
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('regEmail').value.trim().toLowerCase();
+        const password = document.getElementById('regPassword').value;
+        const phone = document.getElementById('regPhone').value.trim();
+        const errorDiv = document.getElementById('registerError');
+        const successDiv = document.getElementById('registerSuccess');
+        const registerBtn = this.querySelector('button[type="submit"]');
+        errorDiv.style.display = 'none';
+        successDiv.style.display = 'none';
+        registerBtn.disabled = true;
+        registerBtn.textContent = 'Registering...';
+
+        // Basic validation
+        if (!email || !password || !phone) {
+            errorDiv.textContent = 'Please fill all fields.';
+            errorDiv.style.display = 'block';
+            registerBtn.disabled = false;
+            registerBtn.textContent = 'Register';
+            return;
         }
-        
-        // Initialize the career dropdown when page loads
-        updateCareerOptions();
-
-        // Function to handle starting the roadmap
-        function startRoadmap() {
-            // Show confirmation dialog
-            const confirmation = confirm("Would you like to start this UX Design roadmap? You'll get weekly progress tracking and reminders.");
-            
-            if (confirmation) {
-                alert("Great! Your UX Design learning journey has begun. We've sent the first week's resources to your email.");
-                // Here you would typically integrate with a user account system,
-                // save their selection to a database, and set up notifications
-            }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errorDiv.textContent = 'Please enter a valid email address.';
+            errorDiv.style.display = 'block';
+            registerBtn.disabled = false;
+            registerBtn.textContent = 'Register';
+            return;
         }
-
-        // Update step indicator based on selection
-        document.getElementById('degree').addEventListener('change', function() {
-            if (this.value) {
-                document.getElementById('step1').classList.add('active');
-                document.getElementById('step2').classList.add('active');
-            } else {
-                document.getElementById('step2').classList.remove('active');
-                document.getElementById('step3').classList.remove('active');
-            }
-        });
-        
-        document.getElementById('career').addEventListener('change', function() {
-            if (this.value) {
-                document.getElementById('step3').classList.add('active');
-            } else {
-                document.getElementById('step3').classList.remove('active');
-            }
-        });
-        
-        // Function to generate roadmap with success animation
-        function generateRoadmapWithAnimation() {
-            const degree = document.getElementById('degree').value;
-            const career = document.getElementById('career').value;
-            const experience = document.getElementById('experience').value;
-
-            if (!degree || !career || !experience) {
-                alert('Please fill in all fields to generate your roadmap!');
-                return;
-            }
-            
-            // Show success animation
-            const successAnimation = document.getElementById('successAnimation');
-            successAnimation.classList.add('show');
-            
-            // Generate roadmap behind the animation
-            generateRoadmap();
-            
-            // Hide animation after delay and scroll to roadmap
-            setTimeout(() => {
-                successAnimation.classList.remove('show');
-                document.getElementById('dynamicRoadmap').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }, 1500);
+        if (password.length < 6) {
+            errorDiv.textContent = 'Password must be at least 6 characters.';
+            errorDiv.style.display = 'block';
+            registerBtn.disabled = false;
+            registerBtn.textContent = 'Register';
+            return;
         }
-
-        // Add this function to fix the "Uncaught ReferenceError: getCareerIcon is not defined" error
-        // This function will parse the career text and return an appropriate icon
-        function getCareerIcon(career) {
-            const careerLower = career.toLowerCase();
-            
-            // Match career text to appropriate icons
-            if (careerLower.includes('software') || careerLower.includes('developer')) return '👨‍💻';
-            if (careerLower.includes('data scientist')) return '📊';
-            if (careerLower.includes('data analyst')) return '📈';
-            if (careerLower.includes('ux') || careerLower.includes('design')) return '🎨';
-            if (careerLower.includes('marketing')) return '📣';
-            if (careerLower.includes('product manager')) return '📱';
-            if (careerLower.includes('business analyst')) return '📊';
-            if (careerLower.includes('content') || careerLower.includes('writer')) return '✍️';
-            if (careerLower.includes('cybersecurity')) return '🔒';
-            if (careerLower.includes('cloud')) return '☁️';
-            if (careerLower.includes('ai') || careerLower.includes('machine learning')) return '🤖';
-            if (careerLower.includes('game')) return '🎮';
-            if (careerLower.includes('blockchain') || careerLower.includes('web3')) return '⛓️';
-            if (careerLower.includes('research')) return '🔬';
-            if (careerLower.includes('automotive')) return '🚗';
-            if (careerLower.includes('aerospace')) return '🚀';
-            if (careerLower.includes('robotics')) return '🦾';
-            if (careerLower.includes('web')) return '🌐';
-            if (careerLower.includes('full-stack')) return '⚙️';
-            
-            // Default icon if no match
-            return '💼';
+        if (!/^[0-9]{10,15}$/.test(phone)) {
+            errorDiv.textContent = 'Please enter a valid phone number.';
+            errorDiv.style.display = 'block';
+            registerBtn.disabled = false;
+            registerBtn.textContent = 'Register';
+            return;
         }
-
-        // Add this at the top of your script to handle the hamburger menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger-menu');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-            
-            // Handle all navigation links - both in header and footer
-            document.querySelectorAll('.nav-menu a, .footer-section a[data-page]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault(); // Prevent default link behavior
-                    
-                    // Close the hamburger menu if it's open
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    
-                    // Get the page ID from data attribute and show that page
-                    const pageId = this.getAttribute('data-page');
-                    if (pageId) {
-                        showPage(pageId);
-                    }
-                });
-            });
-            
-            // Initialize career dropdown with icons
-            const degreeSelect = document.getElementById('degree');
-            const degreeOptions = degreeSelect.querySelectorAll('option');
-            
-            // Skip the first option (placeholder)
-            for(let i = 1; i < degreeOptions.length; i++) {
-                const option = degreeOptions[i];
-                const icon = getDegreeIcon(option.value);
-                option.textContent = `${icon} ${option.textContent}`;
-            }
-            
-            // Initialize career dropdown
-            updateCareerOptions();
-            
-            // Check for elements already in view
-            checkScrollAnimation();
-            
-            // Add career icon to roadmap header dynamically
-            updateRoadmapHeaderIcon();
-        });
+        // Simulate registration (replace with real API call)
+        setTimeout(function() {
+            successDiv.textContent = 'Registration successful! You can now login.';
+            successDiv.style.display = 'block';
+            errorDiv.style.display = 'none';
+            registerBtn.disabled = false;
+            registerBtn.textContent = 'Register';
+        }, 1000);
+    });
     </script>
 </body>
 </html>
