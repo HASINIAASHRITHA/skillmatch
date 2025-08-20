@@ -2279,7 +2279,7 @@
                                 <option value="complete-beginner">👨‍🎓 Complete Beginner</option>
                                 <option value="some-knowledge">📚 Some Basic Knowledge</option>
                                 <option value="intermediate">🔄 Intermediate Level</option>
-                                <option value="advanced-beginner">⚡ Advanced Beginner</option>
+                                <option value="advanced-beginner">⚡ Advanced </option>
                             </select>
                         </div>
 
@@ -2541,6 +2541,120 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
+    // Career path mapping based on degree
+    const careerPathsByDegree = {
+        "btech-cse": [
+            { value: "software-engineer", label: "💻 Software Engineer" },
+            { value: "data-scientist", label: "📊 Data Scientist" },
+            { value: "web-developer", label: "🌐 Web Developer" },
+            { value: "mobile-developer", label: "📱 Mobile App Developer" },
+            { value: "ai-ml-engineer", label: "🤖 AI/ML Engineer" },
+            { value: "devops-engineer", label: "⚙️ DevOps Engineer" },
+            { value: "cybersecurity-analyst", label: "🔒 Cybersecurity Analyst" },
+            { value: "ux-designer", label: "🎨 UX Designer" }
+        ],
+        "btech-mechanical": [
+            { value: "mechanical-design-engineer", label: "📐 Mechanical Design Engineer" },
+            { value: "manufacturing-engineer", label: "🏭 Manufacturing Engineer" },
+            { value: "robotics-engineer", label: "🤖 Robotics Engineer" },
+            { value: "product-manager", label: "📦 Product Manager" },
+            { value: "cad-engineer", label: "💻 CAD Engineer" },
+            { value: "data-analyst", label: "📊 Data Analyst" }
+        ],
+        "btech-electrical": [
+            { value: "electrical-engineer", label: "⚡ Electrical Engineer" },
+            { value: "power-systems-engineer", label: "🔌 Power Systems Engineer" },
+            { value: "embedded-systems-developer", label: "🔧 Embedded Systems Developer" },
+            { value: "iot-specialist", label: "🌐 IoT Specialist" },
+            { value: "automation-engineer", label: "⚙️ Automation Engineer" }
+        ],
+        "btech-civil": [
+            { value: "structural-engineer", label: "🏗️ Structural Engineer" },
+            { value: "construction-manager", label: "🏢 Construction Manager" },
+            { value: "environmental-engineer", label: "🌱 Environmental Engineer" },
+            { value: "urban-planner", label: "🏙️ Urban Planner" },
+            { value: "transportation-engineer", label: "🚗 Transportation Engineer" }
+        ],
+        "bcom": [
+            { value: "accountant", label: "💼 Accountant" },
+            { value: "financial-analyst", label: "📈 Financial Analyst" },
+            { value: "marketing-specialist", label: "📣 Marketing Specialist" },
+            { value: "business-consultant", label: "👔 Business Consultant" },
+            { value: "investment-banker", label: "💰 Investment Banker" }
+        ],
+        "bba": [
+            { value: "business-manager", label: "👨‍💼 Business Manager" },
+            { value: "hr-specialist", label: "👥 HR Specialist" },
+            { value: "marketing-manager", label: "📱 Marketing Manager" },
+            { value: "entrepreneur", label: "🚀 Entrepreneur" },
+            { value: "operations-manager", label: "⚙️ Operations Manager" }
+        ],
+        "ba-english": [
+            { value: "content-writer", label: "✍️ Content Writer" },
+            { value: "digital-marketer", label: "📱 Digital Marketer" },
+            { value: "public-relations", label: "🎭 Public Relations Specialist" },
+            { value: "editor", label: "📝 Editor" },
+            { value: "technical-writer", label: "📄 Technical Writer" }
+        ],
+        "bsc-math": [
+            { value: "data-analyst", label: "📊 Data Analyst" },
+            { value: "statistician", label: "📈 Statistician" },
+            { value: "actuary", label: "🧮 Actuary" },
+            { value: "research-analyst", label: "🔍 Research Analyst" },
+            { value: "quantitative-analyst", label: "💹 Quantitative Analyst" }
+        ],
+        "bsc-physics": [
+            { value: "research-scientist", label: "🔬 Research Scientist" },
+            { value: "data-analyst", label: "📊 Data Analyst" },
+            { value: "lab-technician", label: "🧪 Lab Technician" },
+            { value: "radiation-physicist", label: "☢️ Radiation Physicist" },
+            { value: "science-writer", label: "✍️ Science Writer" }
+        ],
+        "bca": [
+            { value: "software-developer", label: "💻 Software Developer" },
+            { value: "systems-analyst", label: "🔍 Systems Analyst" },
+            { value: "web-developer", label: "🌐 Web Developer" },
+            { value: "database-administrator", label: "🗃️ Database Administrator" },
+            { value: "it-consultant", label: "👨‍💼 IT Consultant" }
+        ]
+    };
+
+    // Function to update career options based on selected degree
+    function updateCareerOptions() {
+        const degreeSelect = document.getElementById('degree');
+        const careerSelect = document.getElementById('career');
+        
+        // Clear existing options
+        careerSelect.innerHTML = '';
+        
+        // Get selected degree
+        const selectedDegree = degreeSelect.value;
+        
+        // Add default option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        
+        if (selectedDegree === '') {
+            defaultOption.textContent = 'First select your degree';
+            careerSelect.appendChild(defaultOption);
+            return;
+        }
+        
+        defaultOption.textContent = 'Select your dream career';
+        careerSelect.appendChild(defaultOption);
+        
+        // Get career paths for the selected degree
+        const careerPaths = careerPathsByDegree[selectedDegree] || [];
+        
+        // Add career options
+        careerPaths.forEach(career => {
+            const option = document.createElement('option');
+            option.value = career.value;
+            option.textContent = career.label;
+            careerSelect.appendChild(option);
+        });
+    }
+
     // Function to hash password (using SHA-256)
     // Note: This is still not as secure as Firebase Auth's built-in methods
     // but is better than storing plaintext passwords
@@ -2602,25 +2716,44 @@
             if (userProfile) userProfile.style.display = 'none';
         }
     }
-    // Call updateNavAuth(false) for logged out, updateNavAuth(true, 'your@email.com') for logged in
 
-    // Navigation page switching (optional, if not handled elsewhere)
-    document.querySelectorAll('.nav-menu a[data-page]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.page').forEach(function(page) {
-                page.classList.remove('active');
+    // Create a reusable navigation function
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(function(page) {
+            page.classList.remove('active');
+        });
+        
+        // Show the requested page
+        const pageEl = document.getElementById(pageId);
+        if (pageEl) pageEl.classList.add('active');
+        
+        // Update active state in main navigation
+        document.querySelectorAll('.nav-menu a').forEach(function(a) {
+            a.classList.remove('active');
+        });
+        
+        const navLink = document.querySelector(`.nav-menu a[data-page="${pageId}"]`);
+        if (navLink) navLink.classList.add('active');
+        
+        // Close nav menu on mobile if open
+        const navMenu = document.getElementById('navMenu');
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        if (navMenu) navMenu.classList.remove('active');
+        if (hamburgerMenu) hamburgerMenu.classList.remove('active');
+        
+        // Scroll to top for better user experience
+        window.scrollTo(0, 0);
+    }
+
+    // Apply navigation to all links with data-page attribute
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[data-page]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
             });
-            document.querySelectorAll('.nav-menu a').forEach(function(a) {
-                a.classList.remove('active');
-            });
-            const pageId = link.getAttribute('data-page');
-            const pageEl = document.getElementById(pageId);
-            if (pageEl) pageEl.classList.add('active');
-            link.classList.add('active');
-            // Close nav menu on mobile after click
-            navMenu.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
         });
     });
 
@@ -2816,5 +2949,77 @@
         });
     }
     </script>
+    
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SkillMatch</h3>
+                    <p style="color: #d1d5db; margin-bottom: 20px;">
+                        Bridging the gap between education and industry with personalized career roadmaps.
+                    </p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.4rem;" title="Facebook">
+                            <i>📘</i>
+                        </a>
+                        <a href="#" style="color: white; font-size: 1.4rem;" title="Twitter">
+                            <i>🐦</i>
+                        </a>
+                        <a href="#" style="color: white; font-size: 1.4rem;" title="LinkedIn">
+                            <i>💼</i>
+                        </a>
+                        <a href="#" style="color: white; font-size: 1.4rem;" title="Instagram">
+                            <i>📸</i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="form">Find Path</a></li>
+                        <li><a href="#" data-page="roadmap">Roadmap</a></li>
+                        <li><a href="#" data-page="about">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Career Guides</a></li>
+                        <li><a href="#">Learning Resources</a></li>
+                        <li><a href="#">Industry Insights</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 12px; color: #d1d5db;">
+                            <i style="margin-right: 10px;">📍</i> Hyderabad, India
+                        </li>
+                        <li style="margin-bottom: 12px; color: #d1d5db;">
+                            <i style="margin-right: 10px;">📧</i> contact@skillmatch.com
+                        </li>
+                        <li style="color: #d1d5db;">
+                            <i style="margin-right: 10px;">📞</i> +91 1234567890
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 SkillMatch. All rights reserved.</p>
+                <p style="margin-top: 5px; font-size: 0.85rem;">
+                    <a href="#" style="color: #9ca3af; margin-right: 15px;">Privacy Policy</a>
+                    <a href="#" style="color: #9ca3af; margin-right: 15px;">Terms of Service</a>
+                    <a href="#" style="color: #9ca3af;">Cookie Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
