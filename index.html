@@ -1984,30 +1984,30 @@
     color: white;
     padding: 50px 0 20px;
 }
-
+        
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
     margin-bottom: 30px;
 }
-
+        
 .footer-section h3 {
     margin-bottom: 20px;
     color: var(--accent-color);
     font-size: 1.3rem;
     font-weight: 600;
 }
-
+        
 .footer-section ul {
     list-style: none;
     padding-left: 0;
 }
-
+        
 .footer-section ul li {
     margin-bottom: 12px;
 }
-
+        
 .footer-section ul li a {
     color: #d1d5db;
     text-decoration: none;
@@ -2015,7 +2015,7 @@
     position: relative;
     padding-left: 18px;
 }
-
+        
 .footer-section ul li a:before {
     content: '→';
     position: absolute;
@@ -2023,24 +2023,24 @@
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
 }
-
+        
 .footer-section ul li a:hover {
     color: white;
     padding-left: 22px;
 }
-
+        
 .footer-section ul li a:hover:before {
     opacity: 1;
     transform: translateX(2px);
 }
-
+        
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid #374151;
     color: #9ca3af;
 }
-
+        
 /* Responsive Fixes */
 @media (max-width: 768px) {
     .team-grid {
@@ -2058,14 +2058,162 @@
         gap: 30px;
     }
 }
-
+        
 @media (max-width: 480px) {
     .team-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* Remove duplicate <style> and <script> tags */
+/* Unified Card Styling for About Page */
+.about-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 0;
+    background: var(--primary-color);
+    transition: height 0.4s ease;
+}
+
+.about-card:hover::before {
+    height: 100%;
+}
+
+.about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Impact Cards */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.stat-card {
+    padding: 0;
+}
+
+.stat-content {
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Partners Cards */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.partner-logo {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.partner-card h4 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.partner-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Recognition Cards */
+.recognition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.recognition-icon {
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #e85d04 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.recognition-card h4 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.recognition-card p {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Section Title Enhancement */
+.about-section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.about-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 3px;
+}
     </style>
 </head>
 <body>
@@ -2387,7 +2535,42 @@
                     tailored to your degree and aspirations.
                 </p>
                 
-                <div style="margin-bottom: 60px;">
+                <!-- Our Story Section (New) -->
+                <div style="margin-bottom: 70px;">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: var(--primary-color);">Our Story</h3>
+                    <div class="timeline-cards">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-content">
+                                <h4>The Beginning</h4>
+                                <p>Founded by a group of tech professionals who recognized the skill gap between academic curriculum and industry requirements.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2021</div>
+                            <div class="timeline-content">
+                                <h4>Platform Launch</h4>
+                                <p>Launched our beta platform with roadmaps for 5 career paths, primarily focused on engineering students.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2022</div>
+                            <div class="timeline-content">
+                                <h4>Expansion</h4>
+                                <p>Expanded to cover 20+ career paths across multiple disciplines and introduced personalized mentorship programs.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-card">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-content">
+                                <h4>Today</h4>
+                                <p>Now serving students across 100+ colleges with AI-powered customized career roadmaps and industry partnerships.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 70px;">
                     <h3 style="text-align: center; margin-bottom: 30px; color: var(--primary-color);">Our Mission</h3>
                     <div class="feature-card" style="max-width: 900px; margin: 0 auto;">
                         <p style="font-size: 1.1rem; line-height: 1.8; text-align: center;">
@@ -2398,6 +2581,37 @@
                     </div>
                 </div>
                 
+                <!-- Key Statistics Section (Enhanced) -->
+                <div style="margin-bottom: 80px; padding-top: 20px;">
+                    <h3 class="about-section-title">Our Impact</h3>
+                    <div class="stats-container">
+                        <div class="about-card stat-card">
+                            <div class="stat-content">
+                                <div class="stat-number">5,000+</div>
+                                <div class="stat-label">Students Guided</div>
+                            </div>
+                        </div>
+                        <div class="about-card stat-card">
+                            <div class="stat-content">
+                                <div class="stat-number">150+</div>
+                                <div class="stat-label">Colleges Reached</div>
+                            </div>
+                        </div>
+                        <div class="about-card stat-card">
+                            <div class="stat-content">
+                                <div class="stat-number">85%</div>
+                                <div class="stat-label">Placement Rate</div>
+                            </div>
+                        </div>
+                        <div class="about-card stat-card">
+                            <div class="stat-content">
+                                <div class="stat-number">30+</div>
+                                <div class="stat-label">Career Paths</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h3 style="text-align: center; margin-bottom: 30px; color: var(--primary-color);">Our Team</h3>
                 <div class="team-grid">
                     <div class="team-member">
@@ -2427,8 +2641,8 @@
                     </div>
                 </div>
                 
-                <div style="margin-top: 60px; text-align: center;">
-                    <h3 style="margin-bottom: 30px; color: var(--primary-color);">Our Values</h3>
+                <div style="margin-top: 60px; margin-bottom: 70px;">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: var(--primary-color);">Our Values</h3>
                     <div class="features-grid" style="max-width: 1000px; margin: 0 auto;">
                         <div class="feature-card">
                             <div class="feature-icon">💡</div>
@@ -2448,7 +2662,63 @@
                     </div>
                 </div>
                 
-                <div style="margin-top: 70px; text-align: center;">
+                <!-- Partners Section (Enhanced) -->
+                <div style="margin-bottom: 80px; padding-top: 20px;">
+                    <h3 class="about-section-title">Our Partners</h3>
+                    <div class="partners-grid">
+                        <div class="about-card partner-card">
+                            <div>
+                                <div class="partner-logo">🏫</div>
+                                <h4>Educational Partners</h4>
+                                <p>We collaborate with 50+ educational institutions to ensure our roadmaps complement academic learning.</p>
+                            </div>
+                        </div>
+                        <div class="about-card partner-card">
+                            <div>
+                                <div class="partner-logo">🏢</div>
+                                <h4>Industry Collaborations</h4>
+                                <p>Our roadmaps are developed with input from leading tech companies to ensure relevance.</p>
+                            </div>
+                        </div>
+                        <div class="about-card partner-card">
+                            <div>
+                                <div class="partner-logo">🤝</div>
+                                <h4>Mentorship Network</h4>
+                                <p>A network of 200+ industry professionals who volunteer as mentors on our platform.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recognition Section (Enhanced) -->
+                <div style="margin-bottom: 80px; padding-top: 20px;">
+                    <h3 class="about-section-title">Recognition & Media</h3>
+                    <div class="recognition-grid">
+                        <div class="about-card recognition-card">
+                            <div>
+                                <div class="recognition-icon">🏆</div>
+                                <h4>Best EdTech Startup 2022</h4>
+                                <p>Awarded by the National Education Innovation Summit</p>
+                            </div>
+                        </div>
+                        <div class="about-card recognition-card">
+                            <div>
+                                <div class="recognition-icon">📰</div>
+                                <h4>Featured in TechCrunch</h4>
+                                <p>"SkillMatch is revolutionizing how students transition to careers"</p>
+                            </div>
+                        </div>
+                        <div class="about-card recognition-card">
+                            <div>
+                                <div class="recognition-icon">🌟</div>
+                                <h4>Top 10 EdTech Solutions</h4>
+                                <p>Recognized by Education Technology Insights magazine</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; text-align: center;">
                     <h3 style="margin-bottom: 30px; color: var(--primary-color);">Get in Touch</h3>
                     <p style="margin-bottom: 30px; font-size: 1.1rem;">Have questions or feedback? We'd love to hear from you!</p>
                     <a href="mailto:contact@skillmatch.com" class="btn btn-primary">Contact Us</a>
@@ -2456,7 +2726,7 @@
             </div>
         </section>
     </div>
-
+    
     <!-- LOGIN PAGE -->
     <div id="login" class="page">
         <section class="auth-section">
@@ -2757,8 +3027,8 @@
         });
     });
 
-    // Professional login page logic
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    // Professional login page logic - updated with proper Firestore validation
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
@@ -2770,53 +3040,71 @@
         loginBtn.disabled = true;
         loginBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">⏳</span> Logging in...';
 
-        // Trim and lowercase email for robust comparison
-        const email = emailInput.value.trim().toLowerCase();
-        const password = passwordInput.value;
+        try {
+            // Trim and lowercase email for robust comparison
+            const email = emailInput.value.trim().toLowerCase();
+            const password = passwordInput.value;
 
-        // Simple validation
-        if (!email || !password) {
-            errorDiv.textContent = 'Please enter both email and password.';
+            // Simple validation
+            if (!email || !password) {
+                errorDiv.textContent = 'Please enter both email and password.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            // Step 1: Find user by email in Firestore
+            const usersSnapshot = await db.collection('users').where('email', '==', email).limit(1).get();
+            
+            if (usersSnapshot.empty) {
+                // No user found with this email
+                errorDiv.textContent = 'Invalid email or password.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            const userDoc = usersSnapshot.docs[0];
+            const userData = userDoc.data();
+            
+            // Step 2: Verify password with stored hash
+            const enteredPasswordHash = await hashPassword(password);
+            
+            if (enteredPasswordHash !== userData.passwordHash) {
+                // Password doesn't match
+                errorDiv.textContent = 'Invalid email or password.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            // Step 3: If credentials match, proceed with Firebase Auth login
+            await auth.signInWithEmailAndPassword(email, password);
+            
+            // Login successful
+            successDiv.textContent = 'Login successful! Redirecting...';
+            successDiv.style.display = 'block';
+            
+            // Update UI
+            updateNavAuth(true, email);
+            
+            // Redirect to home page after a short delay
+            setTimeout(function() {
+                document.querySelectorAll('.page').forEach(function(page) {
+                    page.classList.remove('active');
+                });
+                document.getElementById('home').classList.add('active');
+                document.querySelectorAll('.nav-menu a').forEach(function(a) {
+                    a.classList.remove('active');
+                });
+                document.querySelector('.nav-menu a[data-page="home"]').classList.add('active');
+            }, 1200);
+            
+        } catch (error) {
+            console.error("Login error:", error);
+            errorDiv.textContent = 'An error occurred during login. Please try again.';
             errorDiv.style.display = 'block';
+        } finally {
             loginBtn.disabled = false;
             loginBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">🔑</span> Login';
-            return;
         }
-
-        // Firebase Authentication
-        auth.signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // Login successful
-                successDiv.textContent = 'Login successful! Redirecting...';
-                successDiv.style.display = 'block';
-                errorDiv.style.display = 'none';
-                
-                // Update UI
-                updateNavAuth(true, email);
-                
-                // Redirect to home page after a short delay
-                setTimeout(function() {
-                    document.querySelectorAll('.page').forEach(function(page) {
-                        page.classList.remove('active');
-                    });
-                    document.getElementById('home').classList.add('active');
-                    document.querySelectorAll('.nav-menu a').forEach(function(a) {
-                        a.classList.remove('active');
-                    });
-                    document.querySelector('.nav-menu a[data-page="home"]').classList.add('active');
-                }, 1200);
-            })
-            .catch((error) => {
-                // Handle errors
-                console.error("Login error:", error);
-                errorDiv.textContent = error.message || 'Invalid email or password. Please try again.';
-                errorDiv.style.display = 'block';
-                successDiv.style.display = 'none';
-            })
-            .finally(() => {
-                loginBtn.disabled = false;
-                loginBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">🔑</span> Login';
-            });
     });
 
     // Navigation for register/login links
@@ -2947,6 +3235,237 @@
         }).catch((error) => {
             console.error("Sign out error:", error);
         });
+    }
+
+    // Function to generate roadmap with animation
+    function generateRoadmapWithAnimation() {
+        // Get form values
+        const degree = document.getElementById('degree').value;
+        const career = document.getElementById('career').value;
+        const experience = document.getElementById('experience').value;
+        
+        // Validate all fields are filled
+        if (!degree || !career || !experience) {
+            alert('Please fill out all fields to generate your roadmap.');
+            return;
+        }
+        
+        // Show loading animation
+        const submitBtn = document.querySelector('.form-submit');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span style="display: inline-block; margin-right: 8px;">⌛</span> Generating Roadmap...';
+        
+        // Simulate processing time (could be replaced with actual API call)
+        setTimeout(() => {
+            // Update step indicators
+            document.querySelectorAll('.step-item').forEach(item => item.classList.remove('active'));
+            document.getElementById('step3').classList.add('active');
+            
+            // Generate roadmap title
+            const degreeText = document.querySelector(`#degree option[value="${degree}"]`).textContent;
+            const careerText = document.querySelector(`#career option[value="${career}"]`).textContent;
+            const roadmapTitle = document.getElementById('roadmapTitle');
+            roadmapTitle.textContent = `${degreeText} → ${careerText} Roadmap`;
+            
+            // Generate learning path content
+            const learningPath = document.getElementById('learningPath');
+            learningPath.innerHTML = generateLearningPath(degree, career, experience);
+            
+            // Generate job roles
+            const jobRoles = document.getElementById('jobRoles');
+            jobRoles.innerHTML = generateJobRoles(career, experience);
+            
+            // Generate application guide
+            const applicationGuide = document.getElementById('applicationGuide');
+            applicationGuide.innerHTML = generateApplicationGuide(career);
+            
+            // Generate resources
+            const resources = document.getElementById('resources');
+            resources.innerHTML = generateResources(degree, career);
+            
+            // Generate projects
+            const projects = document.getElementById('projects');
+            projects.innerHTML = generateProjects(career);
+            
+            // Show success animation
+            const successAnimation = document.createElement('div');
+            successAnimation.className = 'success-animation';
+            successAnimation.innerHTML = `
+                <div class="checkmark-container">
+                    <div class="checkmark">✓</div>
+                </div>
+            `;
+            document.body.appendChild(successAnimation);
+            
+            // Trigger animation
+            setTimeout(() => {
+                successAnimation.classList.add('show');
+                setTimeout(() => {
+                    successAnimation.classList.remove('show');
+                    setTimeout(() => {
+                        successAnimation.remove();
+                        
+                        // Show roadmap
+                        document.getElementById('dynamicRoadmap').style.display = 'block';
+                        
+                        // Scroll to roadmap
+                        document.getElementById('dynamicRoadmap').scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Reset button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    }, 500);
+                }, 1500);
+            }, 100);
+        }, 1500);
+    }
+    
+    // Helper function to generate learning path based on selections
+    function generateLearningPath(degree, career, experience) {
+        let content = '';
+        
+        // Basic phases for beginners (can be expanded for different degree/career combinations)
+        const phases = {
+            'complete-beginner': [
+                { title: 'Phase 1: Foundation', duration: '2-4 weeks', description: 'Build fundamental knowledge and skills' },
+                { title: 'Phase 2: Core Competencies', duration: '4-6 weeks', description: 'Develop essential skills specific to your career path' },
+                { title: 'Phase 3: Specialization', duration: '6-8 weeks', description: 'Focus on advanced topics and specializations' }
+            ],
+            'some-knowledge': [
+                { title: 'Phase 1: Skill Assessment', duration: '1-2 weeks', description: 'Identify gaps in your knowledge' },
+                { title: 'Phase 2: Targeted Learning', duration: '3-4 weeks', description: 'Address specific skill gaps' },
+                { title: 'Phase 3: Advanced Concepts', duration: '4-6 weeks', description: 'Master advanced concepts in your field' }
+            ],
+            'intermediate': [
+                { title: 'Phase 1: Knowledge Refinement', duration: '1-2 weeks', description: 'Polish existing skills and fill knowledge gaps' },
+                { title: 'Phase 2: Industry Projects', duration: '3-4 weeks', description: 'Work on practical industry-relevant projects' },
+                { title: 'Phase 3: Job Preparation', duration: '2-3 weeks', description: 'Interview preparation and portfolio refinement' }
+            ],
+            'advanced-beginner': [
+                { title: 'Phase 1: Industry Standards', duration: '1 week', description: 'Align skills with current industry standards' },
+                { title: 'Phase 2: Portfolio Development', duration: '2-3 weeks', description: 'Create standout projects for your portfolio' },
+                { title: 'Phase 3: Job Market Strategy', duration: '1-2 weeks', description: 'Develop a strategic approach to job applications' }
+            ]
+        };
+        
+        // Generate HTML based on experience level
+        const selectedPhases = phases[experience] || phases['complete-beginner'];
+        
+        selectedPhases.forEach(phase => {
+            content += `
+                <div class="learning-phase">
+                    <div class="phase-title">${phase.title}</div>
+                    <div class="phase-duration">Duration: ${phase.duration}</div>
+                    <div class="phase-description">${phase.description}</div>
+                </div>
+            `;
+        });
+        
+        return content;
+    }
+    
+    // Helper function to generate job roles based on selections
+    function generateJobRoles(career, experience) {
+        let content = '';
+        
+        // Career-specific roles (simplified for demo)
+        const careerRoles = {
+            'software-engineer': [
+                { title: 'Junior Software Developer', salary: '₹3-6 LPA' },
+                { title: 'Software Engineer', salary: '₹5-12 LPA' },
+                { title: 'Senior Software Engineer', salary: '₹12-25+ LPA' }
+            ],
+            'data-scientist': [
+                { title: 'Data Analyst', salary: '₹4-8 LPA' },
+                { title: 'Junior Data Scientist', salary: '₹6-12 LPA' },
+                { title: 'Senior Data Scientist', salary: '₹15-30+ LPA' }
+            ],
+            'ux-designer': [
+                { title: 'UI/UX Intern', salary: '₹2-4 LPA' },
+                { title: 'UI/UX Designer', salary: '₹5-10 LPA' },
+                { title: 'Senior UX Designer', salary: '₹12-25+ LPA' }
+            ]
+        };
+        
+        // Default roles if specific career isn't defined
+        const defaultRoles = [
+            { title: 'Entry Level Position', salary: '₹3-6 LPA' },
+            { title: 'Mid-Level Position', salary: '₹6-12 LPA' },
+            { title: 'Senior Position', salary: '₹12-20+ LPA' }
+        ];
+        
+        // Get roles for the selected career or use default
+        const roles = careerRoles[career] || defaultRoles;
+        
+        roles.forEach(role => {
+            content += `
+                <div class="job-role">
+                    <div class="role-title">${role.title}</div>
+                    <div class="role-salary">Average Salary: ${role.salary}</div>
+                </div>
+            `;
+        });
+        
+        return content;
+    }
+    
+    // Helper function to generate application guide
+    function generateApplicationGuide(career) {
+        return `
+            <div class="application-tips">
+                <p><strong>Resume Tips:</strong> Highlight projects related to ${career}. Quantify your achievements and demonstrate problem-solving skills.</p>
+                <p><strong>Interview Preparation:</strong> Be ready to solve technical problems and explain your thought process. Research common interview questions for this role.</p>
+                <p><strong>Portfolio:</strong> Create a professional portfolio showcasing relevant projects and skills.</p>
+                <p><strong>Networking:</strong> Connect with professionals in your desired field through LinkedIn and industry meetups.</p>
+            </div>
+        `;
+    }
+    
+    // Helper function to generate resources
+    function generateResources(degree, career) {
+        let content = '';
+        
+        // Simple set of resources (would be expanded in a real implementation)
+        const resources = [
+            { title: 'Online Course: Complete Career Path', source: 'Udemy/Coursera', type: 'Paid' },
+            { title: 'Interactive Tutorials', source: 'freeCodeCamp', type: 'Free' },
+            { title: 'Comprehensive YouTube Series', source: 'YouTube', type: 'Free' },
+            { title: 'Industry Standard Certification', source: 'Industry Partner', type: 'Paid' }
+        ];
+        
+        resources.forEach(resource => {
+            content += `
+                <div class="resource-item">
+                    <strong>${resource.title}</strong> - ${resource.source} (${resource.type})
+                </div>
+            `;
+        });
+        
+        return content;
+    }
+    
+    // Helper function to generate projects
+    function generateProjects(career) {
+        let content = '';
+        
+        // Generic projects (would be customized by career in real implementation)
+        const projects = [
+            { title: 'Portfolio Website', difficulty: 'Beginner' },
+            { title: 'Industry Relevant Project', difficulty: 'Intermediate' },
+            { title: 'Advanced Specialization Project', difficulty: 'Advanced' },
+            { title: 'Open Source Contribution', difficulty: 'Intermediate to Advanced' }
+        ];
+        
+        projects.forEach(project => {
+            content += `
+                <div class="project-item">
+                    <strong>${project.title}</strong> - Difficulty: ${project.difficulty}
+                </div>
+            `;
+        });
+        
+        return content;
     }
     </script>
     
